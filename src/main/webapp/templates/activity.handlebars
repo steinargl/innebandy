@@ -1,0 +1,129 @@
+<div id="activity-row-{{id}}" data-id="{{id}}" class="row makeMeDraggable makeMeDroppable">
+    <div class="col-sm-12">
+        <div id="activity-{{id}}" class="activity">
+            <div class="tablebox">
+                <div class="row" style="vertical-align: middle;">
+                    <div class="col-xs-10">
+                        {{activityType.name}} &nbsp;&nbsp;<b>{{time.hoursMinutes.hours}}</b>&nbsp;timer&nbsp;<b>{{time.hoursMinutes.minutes}}</b>&nbsp;min
+                    </div>
+                    <div class="col-xs-2">
+                        <div class="pull-right">
+                            <table>
+                                <tr>
+                                    <td style="padding-right:10px;">
+                                        <a href="#" class="move-activity" data-id="{{id}}" data-url="/treg/activity/move?id={{id}}">
+                                            <i class="glyphicon glyphicon-share-alt" style="font-size: 20px;"></i>
+                                        </a>
+                                    </td>
+                                    <td style="padding-right:10px;">
+                                        <a href="#" class="edit-activity" data-id="{{id}}">
+                                            <i class="glyphicon glyphicon-edit" style="font-size: 20px;"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="#" class="delete-activity" data-id="{{id}}" data-url="/treg/activity/delete?id={{id}}">
+                                            <i class="glyphicon glyphicon-trash" style="font-size: 20px;"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                {{#if description}}
+                    <hr>
+                {{/if}}
+                <div>
+                    <p style="white-space:pre-line;">{{description}}</p>
+                </div>
+            </div>
+        </div>
+        <div id="activity-form-{{id}}" class="activity-form" style="display:none">
+            <form>
+                <input type="hidden" name="activityId" value="{{id}}"/>
+                <input type="hidden" name="date" value=""/>
+                <div  class="tablebox">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <select class="form-control" name="activityTypeId">
+                                                <option value="ARBEID"{{#if_eq "ARBEID" activityType.id}} selected{{/if_eq}}>Arbeid</option>
+                                                <option value="AVSPASSERING"{{#if_eq "AVSPASSERING" activityType.id}} selected{{/if_eq}}>Avspassering</option>
+                                                <option value="FERIE"{{#if_eq "FERIE" activityType.id}} selected{{/if_eq}}>Ferie</option>
+                                                <option value="SYKE_BARN"{{#if_eq "SYKE_BARN" activityType.id}} selected{{/if_eq}}>Syke barn</option>
+                                                <option value="SYK_EGENMELDING"{{#if_eq "SYK_EGENMELDING" activityType.id}} selected{{/if_eq}}>Syk - egenmelding</option>
+                                                <option value="SYK_SYKEMELDING"{{#if_eq "SYK_SYKEMELDING" activityType.id}} selected{{/if_eq}}>Syk - sykemelding</option>
+                                            </select>
+                                        </td>
+                                        <td style="padding-left:30px;padding-right:5px;">
+                                            <select class="form-control" name="hours">
+                                                <option value="0"{{#if_eq 0 time.hoursMinutes.hours}} selected{{/if_eq}}>0 timer</option>
+                                                <option value="1"{{#if_eq 1 time.hoursMinutes.hours}} selected{{/if_eq}}>1 timer</option>
+                                                <option value="2"{{#if_eq 2 time.hoursMinutes.hours}} selected{{/if_eq}}>2 timer</option>
+                                                <option value="3"{{#if_eq 3 time.hoursMinutes.hours}} selected{{/if_eq}}>3 timer</option>
+                                                <option value="4"{{#if_eq 4 time.hoursMinutes.hours}} selected{{/if_eq}}>4 timer</option>
+                                                <option value="5"{{#if_eq 5 time.hoursMinutes.hours}} selected{{/if_eq}}>5 timer</option>
+                                                <option value="6"{{#if_eq 6 time.hoursMinutes.hours}} selected{{/if_eq}}>6 timer</option>
+                                                <option value="7"{{#if_eq 7 time.hoursMinutes.hours}} selected{{/if_eq}}>7 timer</option>
+                                                <option value="8"{{#if_eq 8 time.hoursMinutes.hours}} selected{{/if_eq}}>8 timer</option>
+                                                <option value="9"{{#if_eq 9 time.hoursMinutes.hours}} selected{{/if_eq}}>9 timer</option>
+                                                <option value="10"{{#if_eq 10 time.hoursMinutes.hours}} selected{{/if_eq}}>10 timer</option>
+                                                <option value="11"{{#if_eq 11 time.hoursMinutes.hours}} selected{{/if_eq}}>11 timer</option>
+                                                <option value="12"{{#if_eq 12 time.hoursMinutes.hours}} selected{{/if_eq}}>12 timer</option>
+                                                <option value="13"{{#if_eq 13 time.hoursMinutes.hours}} selected{{/if_eq}}>13 timer</option>
+                                                <option value="14"{{#if_eq 14 time.hoursMinutes.hours}} selected{{/if_eq}}>14 timer</option>
+                                                <option value="15"{{#if_eq 15 time.hoursMinutes.hours}} selected{{/if_eq}}>15 timer</option>
+                                                <option value="16"{{#if_eq 16 time.hoursMinutes.hours}} selected{{/if_eq}}>16 timer</option>
+                                                <option value="17"{{#if_eq 17 time.hoursMinutes.hours}} selected{{/if_eq}}>17 timer</option>
+                                                <option value="18"{{#if_eq 18 time.hoursMinutes.hours}} selected{{/if_eq}}>18 timer</option>
+                                                <option value="19"{{#if_eq 19 time.hoursMinutes.hours}} selected{{/if_eq}}>19 timer</option>
+                                                <option value="20"{{#if_eq 20 time.hoursMinutes.hours}} selected{{/if_eq}}>20 timer</option>
+                                                <option value="21"{{#if_eq 21 time.hoursMinutes.hours}} selected{{/if_eq}}>21 timer</option>
+                                                <option value="22"{{#if_eq 22 time.hoursMinutes.hours}} selected{{/if_eq}}>22 timer</option>
+                                                <option value="23"{{#if_eq 23 time.hoursMinutes.hours}} selected{{/if_eq}}>23 timer</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select class="form-control" name="minutes">
+                                                <option value="0"{{#if_eq 0 time.hoursMinutes.minutes}} selected{{/if_eq}}>0 min</option>
+                                                <option value="5"{{#if_eq 5 time.hoursMinutes.minutes}} selected{{/if_eq}}>5 min</option>
+                                                <option value="10"{{#if_eq 10 time.hoursMinutes.minutes}} selected{{/if_eq}}>10 min</option>
+                                                <option value="15"{{#if_eq 15 time.hoursMinutes.minutes}} selected{{/if_eq}}>15 min</option>
+                                                <option value="20"{{#if_eq 20 time.hoursMinutes.minutes}} selected{{/if_eq}}>20 min</option>
+                                                <option value="25"{{#if_eq 25 time.hoursMinutes.minutes}} selected{{/if_eq}}>25 min</option>
+                                                <option value="30"{{#if_eq 30 time.hoursMinutes.minutes}} selected{{/if_eq}}>30 min</option>
+                                                <option value="55"{{#if_eq 35 time.hoursMinutes.minutes}} selected{{/if_eq}}>35 min</option>
+                                                <option value="55"{{#if_eq 40 time.hoursMinutes.minutes}} selected{{/if_eq}}>40 min</option>
+                                                <option value="35"{{#if_eq 45 time.hoursMinutes.minutes}} selected{{/if_eq}}>45 min</option>
+                                                <option value="40"{{#if_eq 50 time.hoursMinutes.minutes}} selected{{/if_eq}}>50 min</option>
+                                                <option value="45"{{#if_eq 55 time.hoursMinutes.minutes}} selected{{/if_eq}}>55 min</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-xs-2">
+                                <div class="pull-right">
+                                    <a href="#" class="cancel-edit-activity" data-id="{{id}}" data-url="/treg/activity/delete?id={{id}}">
+                                        <i class="glyphicon glyphicon-remove" style="font-size:20px;"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top:10px;">
+                            <textarea class="form-control" name="description" rows="3" style="white-space:pre-line;resize:vertical;">{{description}}</textarea>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button type="button" class="save-activity btn btn-primary" data-id="{{id}}" data-url="/treg/activity/update">
+                            <span class="glyphicon glyphicon-save"></span> Lagre
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
