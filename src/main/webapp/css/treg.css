@@ -44,18 +44,54 @@ body {
 }
 
 
-.large-box {
+.blue-box {
     background-color: #4CB5F5;
     color: white;
     padding: 20px;
+    border-width: 1px;
     border-style: solid;
     border-color: #2F3131;
 }
 
-.small-box {
+.gray-box {
+    background-color: #F6F6F6;
+    color: #2F3131;
+    padding:10px;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.green-box {
+    background-color: #1FDA9A;
+    color: #2F3131;
+    padding:10px;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.yellow-box {
     background-color: #F8F1E5;
     color: #2F3131;
     padding:10px;
+    border-width: 1px;
+    border-style: solid;
+}
+
+hr {
+    margin-top:7px;
+    margin-bottom:10px;
+}
+
+.mybadge {
+    background-color: #2F3131;
+    color: white;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    padding: 0;
+    font-size: 12px;
+    line-height: 1.6;
+    border-radius: 10px;
 }
 
 .btn-circle {
