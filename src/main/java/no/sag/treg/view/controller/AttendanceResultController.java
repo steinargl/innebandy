@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @RestController
 @RequestMapping("/innebandy/attendance")
 public class AttendanceResultController
@@ -20,7 +22,7 @@ public class AttendanceResultController
 
     @ResponseStatus(value = HttpStatus.OK)
     @RequestMapping(method = RequestMethod.GET)
-    public AttendanceResultDto getAttendance()
+    public AttendanceResultDto getAttendance(Principal principal)
     {
         return attendanceResultService.getAttendanceResult();
     }

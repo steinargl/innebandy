@@ -16,8 +16,13 @@ var AttendanceResult = (function() {
 
 
             },
-            error: function() {
-                Error.displayError();
+            error: function( jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status === 401) {
+                    Login.displayLogin();
+                }
+                else {
+                    Error.displayError();
+                }
             },
             beforeSend: function() {
                 $('#page').hide();
