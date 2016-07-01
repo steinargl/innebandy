@@ -1,6 +1,7 @@
 package no.sag.treg.view.dto;
 
 import com.google.common.base.Preconditions;
+import no.sag.treg.data.model.AttendanceType;
 
 public class AttendanceTypeDto
 {
@@ -13,7 +14,7 @@ public class AttendanceTypeDto
         this.name = builder.name;
     }
 
-    public static ActivityDtoBuilder createBuilder()
+    public static ActivityDtoBuilder builder()
     {
         return new ActivityDtoBuilder();
     }
@@ -36,6 +37,17 @@ public class AttendanceTypeDto
         {
             Preconditions.checkNotNull(id, "id is required");
             Preconditions.checkNotNull(name, "name is required");
+
+            return new AttendanceTypeDto(this);
+        }
+
+        public AttendanceTypeDto build(final AttendanceType attendanceType)
+        {
+            Preconditions.checkNotNull(attendanceType, "attendanceType is required");
+
+            this.id = attendanceType.name();
+            this.name = attendanceType.text();
+
             return new AttendanceTypeDto(this);
         }
 

@@ -2,11 +2,9 @@ package no.sag.treg.data.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Optional;
-import java.util.Set;
 
 @Entity
-@Table(name = "Attendance")
+@Table(name = "attendance")
 public class Attendance
 {
     @Id
@@ -15,15 +13,30 @@ public class Attendance
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name="email")
+    @JoinColumn(name="username")
     private User user;
 
     @Column(name="date", nullable=false)
     private LocalDate date;
 
-    @Column(columnDefinition = "enum('ATTEND','NOT_ATTEND','INJURED')", nullable=false)
+    @Column(name="type", columnDefinition = "enum('ATTEND','NOT_ATTEND', 'NOT_DECIDED')", nullable = false)
     @Enumerated(EnumType.STRING)
-    private AttendenceType attendenceType;
+    private AttendanceType attendanceType;
+
+    public boolean isAttending()
+    {
+        return attendanceType != null && attendanceType == AttendanceType.ATTEND;
+    }
+
+    public boolean isNotAttending()
+    {
+        return attendanceType != null && attendanceType == AttendanceType.NOT_ATTEND;
+    }
+
+    public boolean hasNotAnswerd()
+    {
+        return attendanceType == null;
+    }
 
     public Long getId() {
         return id;
@@ -49,11 +62,11 @@ public class Attendance
         this.date = date;
     }
 
-    public AttendenceType getAttendenceType() {
-        return attendenceType;
+    public AttendanceType getAttendanceType() {
+        return attendanceType;
     }
 
-    public void setAttendenceType(AttendenceType attendenceType) {
-        this.attendenceType = attendenceType;
+    public void setAttendanceType(AttendanceType attendanceType) {
+        this.attendanceType = attendanceType;
     }
 }

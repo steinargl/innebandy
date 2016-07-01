@@ -1,9 +1,9 @@
 package no.sag.treg.view.controller;
 
-import no.sag.treg.service.AttendanceResultService;
+import no.sag.treg.data.model.AttendanceType;
+import no.sag.treg.service.TrainingService;
 import no.sag.treg.service.AttendanceService;
-import no.sag.treg.view.dto.AttendanceDto;
-import no.sag.treg.view.dto.AttendanceResultDto;
+import no.sag.treg.view.dto.TrainingDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -12,26 +12,38 @@ import java.security.Principal;
 
 @RestController
 @RequestMapping("/innebandy/attendance")
-public class AttendanceResultController
+public class TrainingController
 {
     @Autowired
-    private AttendanceResultService attendanceResultService;
+    private TrainingService trainingService;
 
     @Autowired
     private AttendanceService attendanceService;
 
     @ResponseStatus(value = HttpStatus.OK)
     @RequestMapping(method = RequestMethod.GET)
-    public AttendanceResultDto getAttendance(Principal principal)
+    public TrainingDto getAttendance(final Principal principal)
     {
-        return attendanceResultService.getAttendanceResult();
+        return trainingService.getTraining(principal.getName());
     }
 
     @ResponseStatus(value = HttpStatus.OK)
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public AttendanceDto addAttendance(@RequestParam("id") final String attendanceTypeId)
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public TrainingDto createAttendance(final Principal principal, @RequestParam("attendanceTypeId") final String attendanceTypeId)
     {
-        return attendanceService.addAttendance(attendanceTypeId);
+        attendanceService.createAttendance(principal.getName(), AttendanceType.valueOf(attendanceTypeId));
+        return trainingService.getTraining(principal.getName());
+    }
+
+    @ResponseStatus(value = HttpStatus.OK)
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    public TrainingDto updateAttendance(
+        final Principal principal,
+        @RequestParam("attendanceId") final Long attendanceId,
+        @RequestParam("attendanceTypeId") final String attendanceTypeId)
+    {
+        attendanceService.updateAttendance(attendanceId, AttendanceType.valueOf(attendanceTypeId));
+        return trainingService.getTraining(principal.getName());
     }
 
   /*  @ResponseStatus(value = HttpStatus.OK)

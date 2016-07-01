@@ -7,6 +7,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+import javax.sql.DataSource;
+
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 
@@ -16,18 +18,26 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
     private RESTAuthenticationFailureHandler authenticationFailureHandler;
     @Autowired
     private RESTAuthenticationSuccessHandler authenticationSuccessHandler;
+    @Autowired
+    DataSource dataSource;
 
     @Override
     protected void configure(AuthenticationManagerBuilder builder) throws Exception
     {
         builder
-            .inMemoryAuthentication()
+            .jdbcAuthentication()
+            .dataSource(dataSource)
+            .usersByUsernameQuery("select username, password, enabled from users where username=?")
+            .authoritiesByUsernameQuery("select username, role from user_roles where username=?");
+
+
+            /*.inMemoryAuthentication()
             .withUser("sglamseter@gmail.com")
             .password("steinar")
             .roles("USER")
             .and()
             .withUser("admin")
-            .password("admin").roles("ADMIN");
+            .password("admin").roles("ADMIN");*/
     }
 
     @Override
@@ -38,6 +48,8 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
         http.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint);
         http.formLogin().successHandler(authenticationSuccessHandler);
         http.formLogin().failureHandler(authenticationFailureHandler);
+        http.formLogin().usernameParameter("username");
+        http.formLogin().passwordParameter("password");
         http.logout().logoutSuccessUrl("/");
     }
 }

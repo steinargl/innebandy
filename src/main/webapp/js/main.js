@@ -2,93 +2,62 @@ $(document).ready(function(){
 
     Handlebars.partials = Handlebars.templates;
 
-
-
-
-    Handlebars.registerHelper('severity', function(attendanceResult) {
-        if (attendanceResult.reachedLimit === true) {
-            return 'success';
-        }
-        if (attendanceResult.missingPlayersCount === 1) {
-            return 'warning';
-        }
-        if (attendanceResult.missingPlayersCount > 1) {
+    Handlebars.registerHelper('severity', function(training) {
+        if (training.training === false) {
             return 'failure';
         }
+        if (training.distanceFromLimit <= 0) {
+            return 'success';
+        }
+        return 'warning';
     });
-/*
-    Handlebars.registerHelper('toAlertTypeClass', function(severity) {
-        if (severity === 'INFO') {
-            return 'alert-success';
-        } else if (severity === 'WARNING') {
-            return 'alert-warning';
+
+    Handlebars.registerHelper('statusTitle', function(training) {
+        if (training.training === false) {
+            return "Ingen trening i dag";
+        }
+        if (training.distanceFromLimit <= 0) {
+            return "The game is on!!!";
+        }
+        return "Ser dårlig ut...";
+    });
+
+    Handlebars.registerHelper('statusSubTitle', function(training) {
+        if (training.training === false) {
+            return "Satser på bedre oppmøte neste gang...";
+        }
+        if (training.distanceFromLimit <= 0) {
+            return training.isAttendingList.length + " stk. har meldt seg på så langt";
+        }
+        if (training.distanceFromLimit == 1) {
+            return "Vi magler én spiller!";
+        }
+        return "Vi magler " + training.distanceFromLimit + " spillere!";
+    });
+
+    Handlebars.registerHelper('equal', function(lvalue, rvalue, options) {
+        if (arguments.length < 3)
+            throw new Error("Handlebars Helper equal needs 2 parameters");
+        if( lvalue!=rvalue ) {
+            return options.inverse(this);
         } else {
-            return 'alert-danger';
+            return options.fn(this);
         }
     });
 
-    Handlebars.registerHelper('toAlertText', function(severity) {
-        if (severity === 'INFO') {
-            return 'Info!';
-        } else if (severity === 'WARNING') {
-            return 'Advarsel!';
-        } else {
-            return 'Feil!';
-        }
-    });
 
-    Handlebars.registerHelper('if_eq', function(a, b, opts) {
-        if(a === b)
-            return opts.fn(this);
-        else
-            return opts.inverse(this);
-    });
+    Training.displayTraining();
 
-    Handlebars.registerHelper('if_gte', function(a, b, opts) {
-        if(parseFloat(a) >= parseFloat(b))
-            return opts.fn(this);
-        else
-            return opts.inverse(this);
-    });
+});
 
-    Handlebars.registerHelper('formatHM', function(hoursMinutes, small, opts) {
-        var timeStr = "";
-        if (hoursMinutes.hours == 0 && hoursMinutes.minutes == 0) {
-            return "0";
-        }
-        if (hoursMinutes.hours > 0) {
-            timeStr += hoursMinutes.hours;
-            timeStr += small === true ? '<small>t</small>&nbsp' : "t&nbsp;";
-        }
-        if (hoursMinutes.minutes > 0) {
-            timeStr += hoursMinutes.minutes;
-            timeStr += small === true ? '<small>m</small>&nbsp' : "m&nbsp;";
-        }
-        return timeStr;
-    });
 
-    Handlebars.registerHelper('formatDHM', function(daysHoursMinutes, opts) {
-        var timeStr = "";
-        if (daysHoursMinutes.days == 0 && daysHoursMinutes.hours == 0 && daysHoursMinutes.minutes == 0) {
-            return "0";
-        }
-        if (daysHoursMinutes.days > 0) {
-            timeStr += daysHoursMinutes.days;
-            timeStr += '<small>d</small>&nbsp';
-        }
-        if (daysHoursMinutes.hours > 0) {
-            timeStr += daysHoursMinutes.hours;
-            timeStr += '<small>t</small>&nbsp';
-        }
-        if (daysHoursMinutes.minutes > 0) {
-            timeStr += daysHoursMinutes.minutes;
-            timeStr += '<small>m</small>&nbsp';
-        }
-        return timeStr;
-    });*/
-
-    AttendanceResult.displayAttendanceResult();
-
+$(document).ajaxError(function(event,xhr,options,exc) {
+    if (xhr.status === 401) {
+        Login.displayLogin();
+    }
+    else {
+        Error.displayError();
+    }
 });
 
 /*

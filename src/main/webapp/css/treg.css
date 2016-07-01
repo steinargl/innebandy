@@ -14,9 +14,15 @@ body {
 /*nice blue #4CB5F5*/
 
 .jumbotron {
+    background-repeat: no-repeat;
+    background-position: right bottom;
     background-color: #F6F6F6;
     border-width: 1px;
     border-style: solid;
+}
+
+.jumbotron h1 {
+    text-transform: uppercase;
 }
 
 .jumbotron-success {
@@ -51,6 +57,7 @@ body {
     border-width: 1px;
     border-style: solid;
     border-color: #2F3131;
+    /*height: 215px;*/
 }
 
 .gray-box {
@@ -62,9 +69,12 @@ body {
 }
 
 .green-box {
+    /*background-image: url("/images/superman.jpg");
+    background-repeat: no-repeat;
+    background-position: right bottom;*/
     background-color: #1FDA9A;
     color: #2F3131;
-    padding:10px;
+    padding: 10px;
     border-width: 1px;
     border-style: solid;
 }

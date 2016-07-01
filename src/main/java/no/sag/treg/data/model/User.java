@@ -4,18 +4,32 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "User")
+@Table(name = "users")
 public class User
 {
     @Id
-    @Column(name = "email")
+    @Column(name = "username", nullable = false)
+    private String username;
+
+    @OneToMany(mappedBy="user")
+    private Set<Role> roles;
+
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "enabled", nullable = false)
+    private boolean enabled;
 
     @OneToMany(mappedBy="user")
     private Set<Attendance> attendences;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public String getEmail() {
         return email;
@@ -25,12 +39,12 @@ public class User
         this.email = email;
     }
 
-    public String getName() {
-        return name;
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public Set<Attendance> getAttendences() {

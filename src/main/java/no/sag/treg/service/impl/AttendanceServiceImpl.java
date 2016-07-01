@@ -1,24 +1,24 @@
 package no.sag.treg.service.impl;
 
-import com.google.common.base.Preconditions;
 import no.sag.treg.data.model.Attendance;
-import no.sag.treg.data.model.AttendenceType;
+import no.sag.treg.data.model.AttendanceType;
 import no.sag.treg.data.model.User;
 import no.sag.treg.data.repo.AttendanceRepository;
 import no.sag.treg.data.repo.UserRepository;
+import no.sag.treg.service.AbstractService;
 import no.sag.treg.service.AttendanceService;
+import no.sag.treg.service.TrainingService;
 import no.sag.treg.view.dto.AttendanceDto;
-import no.sag.treg.view.dto.AttendanceTypeDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
+import static com.google.common.base.Preconditions.checkArgument;
+import static org.springframework.util.StringUtils.isEmpty;
 
 @Transactional
 @Service
-public class AttendanceServiceImpl implements AttendanceService
+public class AttendanceServiceImpl extends AbstractService implements AttendanceService
 {
     @Autowired
     private UserRepository userRepository;
@@ -26,68 +26,52 @@ public class AttendanceServiceImpl implements AttendanceService
     @Autowired
     private AttendanceRepository attendanceRepository;
 
+    @Autowired
+    private TrainingService trainingService;
+
 
     @Override
-    public AttendanceDto addAttendance(final String attendenceTypeId)
+    public AttendanceDto createAttendance(final String username, final AttendanceType attendanceType)
     {
-        final User user = userRepository.findByEmail("sglamseter@gmail.com");
+        checkArgument(!isEmpty(username), "username is required");
+        checkArgument(!isEmpty(attendanceType), "attendanceType is required");
 
-        final Attendance attendance = new Attendance();
-        attendance.setAttendenceType(AttendenceType.valueOf(attendenceTypeId));
-        attendance.setUser(user);
-        attendance.setDate(nextTrainingDate());
+        final User user = userRepository.findByUsernameAndEnabled(username, true);
+        if (user == null) {
+            throw new IllegalStateException(String.format("Cannot find user with username=%s", username));
+        }
 
-        attendanceRepository.save(attendance);
+        Attendance attendance = createAttendance(user, attendanceType);
+        attendance = attendanceRepository.save(attendance);
 
         user.getAttendences().add(attendance);
 
-        return AttendanceDto.createBuilder()
-            .id(attendance.getId())
-            .date(nextTrainingDate())
-            .attendanceType(AttendanceTypeDto.createBuilder()
-                .id(attendance.getAttendenceType().name())
-                .name(attendance.getAttendenceType().text())
-                .build())
-            .build();
+        return AttendanceDto.builder().build(attendance);
+    }
+
+    private Attendance createAttendance(final User user, final AttendanceType attendenceType)
+    {
+        final Attendance attendance = new Attendance();
+        attendance.setAttendanceType(attendenceType);
+        attendance.setUser(user);
+        attendance.setDate(nextTrainingDate());
+        return attendance;
     }
 
     @Override
-    public AttendanceDto updateAttendance(final String attendenceId, final String attendenceTypeId)
+    public AttendanceDto updateAttendance(final Long attendenceId, final AttendanceType attendanceType)
     {
-        Preconditions.checkNotNull(attendenceId, "attendenceId is required");
-        Preconditions.checkNotNull(attendenceTypeId, "attendenceTypeId is required");
+        checkArgument(!isEmpty(attendenceId), "attendenceId is required");
+        checkArgument(!isEmpty(attendanceType), "attendanceType is required");
 
-        final Attendance attendance = attendanceRepository.findOne(attendenceId);
-        if (attendance == null)
-        {
-            throw new IllegalStateException("Attendance with id=" + attendenceId + " doesn't exist");
+        Attendance attendance = attendanceRepository.findOne(attendenceId);
+        if (attendance == null) {
+            throw new IllegalStateException("Cannot find attendance with id=" + attendenceId);
         }
 
-        attendance.setAttendenceType(AttendenceType.valueOf(attendenceTypeId));
+        attendance.setAttendanceType(attendanceType);
+        attendance = attendanceRepository.save(attendance);
 
-        attendanceRepository.save(attendance);
-
-        return AttendanceDto.createBuilder()
-            .id(attendance.getId())
-            .date(nextTrainingDate())
-            .attendanceType(AttendanceTypeDto.createBuilder()
-                .id(attendance.getAttendenceType().name())
-                .name(attendance.getAttendenceType().text())
-                .build())
-            .build();
-    }
-
-    private LocalDate nextTrainingDate()
-    {
-        LocalDate date = LocalDate.now();
-        if (date.getDayOfWeek() == DayOfWeek.TUESDAY)
-        {
-            return date;
-        }
-        while (date.getDayOfWeek() != DayOfWeek.TUESDAY)
-        {
-            date = date.plusDays(1);
-        }
-        return date;
+        return AttendanceDto.builder().build(attendance);
     }
 }

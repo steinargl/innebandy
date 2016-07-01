@@ -1,0 +1,20 @@
+<div id="decisionBox" class="panel panel-default blue-box">
+    <div class="panel-body">
+        <h3>Kommer du på trening i dag?</h3>
+        <form id="decisionForm">
+            {{#if currentUser.attendance}}
+                <input type="hidden" name="attendanceId" value="{{currentUser.attendance.id}}">
+            {{/if}}
+            <div id="decisionSelect" class="form-group">
+                <select name="attendanceTypeId" class="form-control" style="padding:5px;font-size: 120%;">
+                    <option value="NOT_DECIDED"{{#equal currentUser.attendance.attendanceType.id "UNDECIDED"}} selected{{/equal}}>{{#if currentUser.attendance.attendanceType.id}}Kansje{{/if}}</option>
+                    <option value="ATTEND"{{#equal currentUser.attendance.attendanceType.id "ATTEND"}} selected{{/equal}}>Kommer</option>
+                    <option value="NOT_ATTEND"{{#equal currentUser.attendance.attendanceType.id "NOT_ATTEND"}} selected{{/equal}}>Kommer ikke</option>
+                </select>
+            </div>
+        </form>
+        {{#if currentUser.attendance.attendanceType.id}}
+            <div style="height:20px;"><h4 id="decision" style="display:none">Svaret ditt er registrert</h4></div>
+        {{/if}}
+    </div>
+</div>

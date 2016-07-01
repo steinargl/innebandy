@@ -1,6 +1,7 @@
 package no.sag.treg.view.dto;
 
 import com.google.common.base.Preconditions;
+import no.sag.treg.data.model.Attendance;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -8,8 +9,6 @@ import java.util.Optional;
 
 public class AttendanceDto
 {
-    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-
     private Long id;
     private String date;
     private AttendanceTypeDto attendanceType;
@@ -18,10 +17,10 @@ public class AttendanceDto
     {
         id = builder.id;
         attendanceType = builder.attendanceType;
-        date = DATE_FORMATTER.format(builder.date);
+        date = builder.date;
     }
 
-    public static AttendanceTypeDtoBuilder createBuilder()
+    public static AttendanceTypeDtoBuilder builder()
     {
         return new AttendanceTypeDtoBuilder();
     }
@@ -40,8 +39,10 @@ public class AttendanceDto
 
     public static class AttendanceTypeDtoBuilder
     {
+        private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+
         private Long id;
-        private LocalDate date;
+        private String date;
         private AttendanceTypeDto attendanceType;
 
         public AttendanceDto build()
@@ -49,6 +50,17 @@ public class AttendanceDto
             Preconditions.checkNotNull(id, "id is required");
             Preconditions.checkNotNull(date, "date is required");
             Preconditions.checkNotNull(attendanceType, "attendanceType is required");
+
+            return new AttendanceDto(this);
+        }
+
+        public AttendanceDto build(Attendance attendance)
+        {
+            Preconditions.checkNotNull(attendance, "attendance is required");
+            this.id = attendance.getId();
+            this.date = DATE_FORMATTER.format(attendance.getDate());
+            this.attendanceType = AttendanceTypeDto.builder().build(attendance.getAttendanceType());
+
             return new AttendanceDto(this);
         }
 
@@ -59,7 +71,7 @@ public class AttendanceDto
         }
 
         public AttendanceTypeDtoBuilder date(final LocalDate date) {
-            this.date = date;
+            this.date = DATE_FORMATTER.format(date);
             return this;
         }
 

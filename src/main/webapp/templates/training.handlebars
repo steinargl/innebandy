@@ -1,27 +1,11 @@
 <div class="row">
     <div class="col-sm-12">
-        <div class="jumbotron jumbotron-{{#severity this}}{{/severity}}">
-            <h2><small>Trening 25. juni 2016</small></h2>
-            <h1 class="jumbotron-header-{{#severity this}}{{/severity}}">THE GAME IS ON!</h1>
-        </div>
+        {{>bigStatusBox}}
     </div>
 </div>
 <div class="row">
     <div class="col-sm-7">
-        <div class="panel panel-default blue-box">
-            <div class="panel-body">
-                <h3>Kommer du på trening i dag?</h3>
-                <form>
-                    <div class="form-group">
-                        <select class="form-control" style="padding:5px;font-size: 120%;">
-                            <option></option>
-                            <option>Jeg kommer</option>
-                            <option>Jeg kommer ikke</option>
-                        </select>
-                    </div>
-                </form>
-            </div>
-        </div>
+        {{>decisionBox}}
     </div>
     <div class="col-sm-5">
         <div class="panel panel-default yellow-box">
@@ -41,31 +25,33 @@
     <div class="col-sm-4">
         <div class="panel panel-default green-box">
             <div class="panel-body">
-                <table><tr><td>KOMMER&nbsp;</td><td><div class="mybadge">3</div></td></tr></table>
+                <table><tr><td>KOMMER&nbsp;</td><td><div class="mybadge">{{isAttendingList.length}}</div></td></tr></table>
                 <hr>
-                Steinar<br>
-                Lars-Petter<br>
-                Fredrik
+                {{#each isAttendingList}}
+                    {{username}}<br>
+                {{/each}}
             </div>
         </div>
     </div>
     <div class="col-sm-4">
         <div class="panel panel-default gray-box">
             <div class="panel-body">
-                <table><tr><td>KOMMER IKKE&nbsp;</td><td><div class="mybadge">4</div></td></tr></table>
+                <table><tr><td>KOMMER IKKE&nbsp;</td><td><div class="mybadge">{{isNotAttendingList.length}}</div></td></tr></table>
                 <hr>
-                Steinar<br>
-                Lars-Petter
+                {{#each isNotAttendingList}}
+                    {{username}}<br>
+                {{/each}}
             </div>
         </div>
     </div>
     <div class="col-sm-4">
         <div class="panel panel-default gray-box">
             <div class="panel-body">
-                <table><tr><td>IKKE SVART&nbsp;</td><td><div class="mybadge">4</div></td></tr></table>
+                <table><tr><td>Kansje&nbsp;</td><td><div class="mybadge">{{hasNotAnsweredList.length}}</div></td></tr></table>
                 <hr>
-                Steinar<br>
-                Lars-Petter
+                {{#each hasNotAnsweredList}}
+                    {{username}}<br>
+                {{/each}}
             </div>
         </div>
     </div>

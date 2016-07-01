@@ -1,7 +1,4 @@
 var Login = (function() {
-
-
-
     return {
         displayLogin: function() {
             var loginHtml = Handlebars.templates.login();
@@ -16,7 +13,7 @@ var Login = (function() {
 $(document).on("click", "#btnLogin", function(e) {
     $('#loginform').submit(function (event) {
         event.preventDefault();
-        var data = 'username=' + $('#email').val() + '&password=' + $('#pwd').val();
+        var data = 'username=' + $('#uid').val() + '&password=' + $('#pwd').val();
         $.ajax({
           data: data,
           timeout: 1000,
@@ -26,7 +23,7 @@ $(document).on("click", "#btnLogin", function(e) {
         }).done(function(data, textStatus, jqXHR) {
          // var preLoginInfo = JSON.parse($.cookie('dashboard.pre.login.request'));
           //window.location = preLoginInfo.url;AttendanceResult
-          AttendanceResult.displayAttendanceResult();
+          Training.displayTraining();
 
         }).fail(function(jqXHR, textStatus, errorThrown) {
             alert('Booh! Wrong credentials, try again!');
