@@ -8,51 +8,17 @@
         {{>decisionBox}}
     </div>
     <div class="col-sm-5">
-        <div class="panel panel-default yellow-box">
-            <div class="panel-body">
-                <p>
-                    Trening hver tirsdag fra kl 20.00 til kl 22.00 i <a href="https://www.google.no/maps/place/Gaustadhallen/@59.2659743,10.7717805,15z/data=!4m5!3m4!1s0x0:0xe28d42b4c8661585!8m2!3d59.2659743!4d10.7717805">Gaustadhallen</a>
-                </p>
-                <p>
-                    Prisen er kr 150,- per måned<br>
-                    Betal med <a href="https://www.vipps.no/sos.html">Vipps</a> til 91193609
-                </p>
-            </div>
-        </div>
+        {{>infoBox}}
     </div>
 </div>
 <div class="row">
     <div class="col-sm-4">
-        <div class="panel panel-default green-box">
-            <div class="panel-body">
-                <table><tr><td>KOMMER&nbsp;</td><td><div class="mybadge">{{isAttendingList.length}}</div></td></tr></table>
-                <hr>
-                {{#each isAttendingList}}
-                    {{username}}<br>
-                {{/each}}
-            </div>
-        </div>
+        {{>attendingBox}}
     </div>
     <div class="col-sm-4">
-        <div class="panel panel-default gray-box">
-            <div class="panel-body">
-                <table><tr><td>KOMMER IKKE&nbsp;</td><td><div class="mybadge">{{isNotAttendingList.length}}</div></td></tr></table>
-                <hr>
-                {{#each isNotAttendingList}}
-                    {{username}}<br>
-                {{/each}}
-            </div>
-        </div>
+        {{>notAttendingBox}}
     </div>
     <div class="col-sm-4">
-        <div class="panel panel-default gray-box">
-            <div class="panel-body">
-                <table><tr><td>Kansje&nbsp;</td><td><div class="mybadge">{{hasNotAnsweredList.length}}</div></td></tr></table>
-                <hr>
-                {{#each hasNotAnsweredList}}
-                    {{username}}<br>
-                {{/each}}
-            </div>
-        </div>
+        {{>maybeAttendingBox}}
     </div>
 </div>

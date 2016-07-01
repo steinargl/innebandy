@@ -5,8 +5,8 @@ import no.sag.treg.data.model.AttendanceType;
 import no.sag.treg.data.model.User;
 import no.sag.treg.data.repo.AttendanceRepository;
 import no.sag.treg.data.repo.UserRepository;
-import no.sag.treg.service.AbstractService;
 import no.sag.treg.service.AttendanceService;
+import no.sag.treg.service.CalendarService;
 import no.sag.treg.service.TrainingService;
 import no.sag.treg.view.dto.AttendanceDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import static org.springframework.util.StringUtils.isEmpty;
 
 @Transactional
 @Service
-public class AttendanceServiceImpl extends AbstractService implements AttendanceService
+public class AttendanceServiceImpl implements AttendanceService
 {
     @Autowired
     private UserRepository userRepository;
@@ -28,6 +28,9 @@ public class AttendanceServiceImpl extends AbstractService implements Attendance
 
     @Autowired
     private TrainingService trainingService;
+
+    @Autowired
+    private CalendarService calendarService;
 
 
     @Override
@@ -54,7 +57,7 @@ public class AttendanceServiceImpl extends AbstractService implements Attendance
         final Attendance attendance = new Attendance();
         attendance.setAttendanceType(attendenceType);
         attendance.setUser(user);
-        attendance.setDate(nextTrainingDate());
+        attendance.setDate(calendarService.nextTrainingDate());
         return attendance;
     }
 

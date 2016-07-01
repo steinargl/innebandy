@@ -11,8 +11,11 @@ body {
 }
 
 /*body {overflow-y:scroll;}*/
-/*nice blue #4CB5F5*/
 
+
+/***************
+ ** JUMBOTRON **
+ ***************/
 .jumbotron {
     background-repeat: no-repeat;
     background-position: right bottom;
@@ -42,14 +45,24 @@ body {
 }
 
 .jumbotron-failure {
-    border-color: red;
+    border-color: #e60000;
 }
 
 .jumbotron-header-failure {
-    color: red !important;
+    color: #e60000 !important;
 }
 
+.jumbotron-maybe {
+    border-color: #336699;
+}
 
+.jumbotron-header-maybe {
+    color: #336699 !important;
+}
+
+/***************
+ ** BOXES **
+ ***************/
 .blue-box {
     background-color: #4CB5F5;
     color: white;
@@ -68,7 +81,7 @@ body {
     border-style: solid;
 }
 
-.green-box {
+.isattending-box {
     /*background-image: url("/images/superman.jpg");
     background-repeat: no-repeat;
     background-position: right bottom;*/
@@ -92,16 +105,8 @@ hr {
     margin-bottom:10px;
 }
 
-.mybadge {
-    background-color: #2F3131;
-    color: white;
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    padding: 0;
-    font-size: 12px;
-    line-height: 1.6;
-    border-radius: 10px;
+.player-count {
+    font-size: 200%;
 }
 
 .btn-circle {

@@ -41,7 +41,17 @@ var Training = (function() {
                 var bigStatusBoxHtml = Handlebars.templates.bigStatusBox(training);
                 $('#bigStatusBox').replaceWith(bigStatusBoxHtml);
 
+                var attendingBoxHtml = Handlebars.templates.attendingBox(training);
+                $('#attendingBox').replaceWith(attendingBoxHtml);
+
+                var notAttendingBoxHtml = Handlebars.templates.notAttendingBox(training);
+                $('#notAttendingBox').replaceWith(notAttendingBoxHtml);
+
+                var maybeAttendingBoxHtml = Handlebars.templates.maybeAttendingBox(training);
+                $('#maybeAttendingBox').replaceWith(maybeAttendingBoxHtml);
+
                 _initEventHandlers(training);
+
                 $('#decision').show();
                 //$('.shakeit').effect( "shake", { direction: "right", times: 4, distance: 5}, 1000 );
                 $('#decision').delay(1000).fadeOut(1000)

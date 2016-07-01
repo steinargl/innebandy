@@ -3,36 +3,44 @@ $(document).ready(function(){
     Handlebars.partials = Handlebars.templates;
 
     Handlebars.registerHelper('severity', function(training) {
-        if (training.training === false) {
-            return 'failure';
+        if (training.status === 'YES') {
+            return "success";
         }
-        if (training.distanceFromLimit <= 0) {
-            return 'success';
+        if (training.status === 'NO') {
+            return "failure";
         }
-        return 'warning';
+        if (training.status === 'MAYBE_ON_TRAINING_DAY') {
+            return "warning";
+        }
+        return "maybe";
     });
 
     Handlebars.registerHelper('statusTitle', function(training) {
-        if (training.training === false) {
-            return "Ingen trening i dag";
-        }
-        if (training.distanceFromLimit <= 0) {
+        if (training.status === 'YES') {
             return "The game is on!!!";
         }
-        return "Ser dårlig ut...";
+        if (training.status === 'NO') {
+            return "Ingen trening i dag";
+        }
+        if (training.status === 'MAYBE_ON_TRAINING_DAY') {
+            return "Ser dårlig ut...";
+        }
+        return "Kansje...";
     });
 
     Handlebars.registerHelper('statusSubTitle', function(training) {
-        if (training.training === false) {
-            return "Satser på bedre oppmøte neste gang...";
-        }
-        if (training.distanceFromLimit <= 0) {
+        if (training.status === 'YES') {
             return training.isAttendingList.length + " stk. har meldt seg på så langt";
         }
-        if (training.distanceFromLimit == 1) {
-            return "Vi magler én spiller!";
+        if (training.status === 'NO') {
+            return "Satser på bedre oppmøte neste gang...";
         }
-        return "Vi magler " + training.distanceFromLimit + " spillere!";
+        if (training.distanceFromLimit == 1) {
+            return "Vi mangler kun " + training.distanceFromLimit + " spiller!";
+        }
+        if (training.distanceFromLimit > 1) {
+            return "Vi mangler " + training.distanceFromLimit + " spillere!";
+        }
     });
 
     Handlebars.registerHelper('equal', function(lvalue, rvalue, options) {
@@ -60,29 +68,4 @@ $(document).ajaxError(function(event,xhr,options,exc) {
     }
 });
 
-/*
-$(document).on("click", ".nav #dashboard", function(e) {
-    e.preventDefault();
-    $('.nav #week').parent().removeClass('active');
-    $('.nav #day').parent().removeClass('active');
-    $(this).parent().addClass('active');
-    DASHBOARD.displayDashboard();
-});
-
-$(document).on("click", ".nav #week", function(e) {
-    e.preventDefault();
-    $('.nav #dashboard').parent().removeClass('active');
-    $('.nav #day').parent().removeClass('active');
-    $(this).parent().addClass('active');
-    WEEK.displayCurrentWeek();
-});
-
-$(document).on("click", ".nav #day", function(e) {
-    e.preventDefault();
-    $('.nav #dashboard').parent().removeClass('active');
-    $('.nav #week').parent().removeClass('active');
-    $(this).parent().addClass('active');
-    DAY.displayToday();
-});
-*/
 

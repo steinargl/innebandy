@@ -5,14 +5,16 @@ import no.sag.treg.data.model.Attendance;
 import no.sag.treg.data.model.User;
 import no.sag.treg.data.repo.AttendanceRepository;
 import no.sag.treg.data.repo.UserRepository;
+import no.sag.treg.service.CalendarService;
 import no.sag.treg.service.TrainingService;
+import no.sag.treg.service.TrainingStatusService;
 import no.sag.treg.view.dto.TrainingDto;
+import no.sag.treg.view.dto.TrainingStatus;
 import no.sag.treg.view.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.function.Predicate;
@@ -28,32 +30,53 @@ public class TrainingServiceImpl implements TrainingService
     @Autowired
     private AttendanceRepository attendanceRepository;
 
+    @Autowired
+    private TrainingStatusService trainingStatusService;
+
+    @Autowired
+    private CalendarService  calendarService;
+
+
     @Override
     public TrainingDto getTraining(final String username)
     {
         Preconditions.checkNotNull(username, "username is required");
 
-        final LocalDate nextTrainingDate = getNextTraining();
+        final LocalDate nextTrainingDate = calendarService.nextTrainingDate();
 
         final Set<User> users = userRepository.findByEnabled(true);
+
+        final int traingTimes = 52 - 33 + 1;
+        final int dayPrice = (int)Math.ceil((180.0 * 2.0) / users.size());
+        final int seasonPrice = (int)Math.ceil((traingTimes * 180.0 * 2.0) / users.size());
+        final int monthlyPrice =  (int)Math.ceil(seasonPrice / 5.0);
 
         final int limit = 4;//TODO: get value from settings
 
         final UserDto currentUser = getCurrentUser(username, nextTrainingDate, users);
-        final List<UserDto> isAttendingList = createList(users, a -> a.getDate().equals(nextTrainingDate) && a.isAttending());
-        final List<UserDto> isNotAttendingList = createList(users, a -> a.getDate().equals(nextTrainingDate) && a.isNotAttending());
-        final List<UserDto> hasNotAnsweredList = users.stream()
+        final List<UserDto> attendingList = createList(users, a -> a.getDate().equals(nextTrainingDate) && a.attending());
+        final List<UserDto> notAttendingList = createList(users, a -> a.getDate().equals(nextTrainingDate) && a.notAttending());
+        final List<UserDto> maybeAttendingList = createList(users, a -> a.getDate().equals(nextTrainingDate) && a.maybeAttending());
+
+        maybeAttendingList.addAll(users.stream()
             .filter(u -> u.getAttendences().isEmpty())
             .map(u->UserDto.builder().build(u))
-            .collect(Collectors.toList());
+            .collect(Collectors.toList())
+        );
+
+        final TrainingStatus trainingStatus = trainingStatusService.getStatus(attendingList.size(), limit);
 
         return TrainingDto.createBuilder()
+            .status(trainingStatus)
             .currentUser(currentUser)
             .date(nextTrainingDate)
-            .isAttendingList(isAttendingList)
-            .isNotAttendingList(isNotAttendingList)
-            .hasNotAnsweredList(hasNotAnsweredList)
+            .attendingList(attendingList)
+            .notAttendingList(notAttendingList)
+            .maybeAttendingList(maybeAttendingList)
             .limit(limit)
+            .dayPrice(dayPrice)
+            .seasonPrice(seasonPrice)
+            .monthlyPrice(monthlyPrice)
             .build();
     }
 
@@ -77,28 +100,14 @@ public class TrainingServiceImpl implements TrainingService
         }
 
         final Optional<Attendance> attendance =
-                currentUser.get().getAttendences().stream()
-                    .filter(a -> a.getDate().equals(nextTrainingDate))
-                    .findFirst();
+            currentUser.get().getAttendences().stream()
+                .filter(a -> a.getDate().equals(nextTrainingDate))
+                .findFirst();
 
         if (attendance.isPresent()) {
             return UserDto.builder().build(currentUser.get(), attendance.get());
         }
 
         return UserDto.builder().build(currentUser.get());
-    }
-
-    private static LocalDate getNextTraining()
-    {
-        LocalDate date = LocalDate.now();
-        if (date.getDayOfWeek() == DayOfWeek.TUESDAY)
-        {
-            return date;
-        }
-        while (date.getDayOfWeek() != DayOfWeek.TUESDAY)
-        {
-            date = date.plusDays(1);
-        }
-        return date;
     }
 }

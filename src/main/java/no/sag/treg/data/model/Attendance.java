@@ -23,14 +23,19 @@ public class Attendance
     @Enumerated(EnumType.STRING)
     private AttendanceType attendanceType;
 
-    public boolean isAttending()
+    public boolean attending()
     {
-        return attendanceType != null && attendanceType == AttendanceType.ATTEND;
+        return attendanceType == AttendanceType.ATTEND;
     }
 
-    public boolean isNotAttending()
+    public boolean notAttending()
     {
-        return attendanceType != null && attendanceType == AttendanceType.NOT_ATTEND;
+        return attendanceType == AttendanceType.NOT_ATTEND;
+    }
+
+    public boolean maybeAttending()
+    {
+        return attendanceType == AttendanceType.NOT_DECIDED;
     }
 
     public boolean hasNotAnswerd()

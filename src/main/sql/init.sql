@@ -37,3 +37,4 @@ INSERT INTO attendance (username, date, type) values ('sjur', '2016-07-05', 'NOT
 
 
 UPDATE attendance set type='NOT_ATTEND' WHERE username in ('fredrik');
+
