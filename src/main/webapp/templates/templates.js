@@ -11,7 +11,7 @@ templates['attendingBox'] = template({"1":function(container,depth0,helpers,part
 
   return "<div id=\"attendingBox\" class=\"panel panel-default isattending-box\">\r\n    <div class=\"panel-body\">\r\n        <span class=\"player-count\">"
     + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? depth0.attendingList : depth0)) != null ? stack1.length : stack1), depth0))
-    + "</span>&nbsp;kommer\r\n        <hr>\r\n"
+    + "</span>&nbsp;KOMMER\r\n        <hr>\r\n"
     + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.attendingList : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "    </div>\r\n</div>\r\n";
 },"useData":true});
@@ -41,7 +41,7 @@ templates['decisionBox'] = template({"1":function(container,depth0,helpers,parti
 },"3":function(container,depth0,helpers,partials,data) {
     return " selected";
 },"5":function(container,depth0,helpers,partials,data) {
-    return "Kansje";
+    return "Kanskje";
 },"7":function(container,depth0,helpers,partials,data) {
     return "            <div style=\"height:20px;\"><h4 id=\"decision\" style=\"display:none\">Svaret ditt er registrert</h4></div>\r\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -64,9 +64,9 @@ templates['decisionBox'] = template({"1":function(container,depth0,helpers,parti
 templates['infoBox'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-  return "<div class=\"panel panel-default yellow-box\">\r\n    <div class=\"panel-body\">\r\n        <p>\r\n            Trening hver tirsdag fra kl 20.00 til kl 22.00 i <a href=\"https://www.google.no/maps/place/Gaustadhallen/@59.2659743,10.7717805,15z/data=!4m5!3m4!1s0x0:0xe28d42b4c8661585!8m2!3d59.2659743!4d10.7717805\">Gaustadhallen</a>\r\n        </p>\r\n        <p>\r\n            Første trening blir tirsdag 16. August og siste trening blir 27. desember.\r\n        </p>\r\n        <p>\r\n            Pris per gang er kr "
+  return "<div class=\"panel panel-default yellow-box\">\r\n    <div class=\"panel-body\">\r\n        <p>\r\n            Trening på tirsdager fra kl 20.00 til kl 22.00 i <a href=\"https://www.google.no/maps/place/Gaustadhallen/@59.2659743,10.7717805,15z/data=!4m5!3m4!1s0x0:0xe28d42b4c8661585!8m2!3d59.2659743!4d10.7717805\">Gaustadhallen</a>\r\n        </p>\r\n        <p>\r\n            Første trening blir tirsdag 16. August og siste trening blir 27. desember.\r\n        </p>\r\n        <p>\r\n            Pris per gang er kr "
     + alias4(((helper = (helper = helpers.dayPrice || (depth0 != null ? depth0.dayPrice : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"dayPrice","hash":{},"data":data}) : helper)))
-    + ",-<br>\r\n            Pris per måbed er kr "
+    + ",-<br>\r\n            Pris per måned er kr "
     + alias4(((helper = (helper = helpers.monthlyPrice || (depth0 != null ? depth0.monthlyPrice : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"monthlyPrice","hash":{},"data":data}) : helper)))
     + ",-<br>\r\n            Pris for hele perioden er kr "
     + alias4(((helper = (helper = helpers.seasonPrice || (depth0 != null ? depth0.seasonPrice : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"seasonPrice","hash":{},"data":data}) : helper)))
@@ -86,7 +86,7 @@ templates['maybeAttendingBox'] = template({"1":function(container,depth0,helpers
 
   return "<div id=\"maybeAttendingBox\" class=\"panel panel-default gray-box\">\r\n    <div class=\"panel-body\">\r\n        <span class=\"player-count\">"
     + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? depth0.maybeAttendingList : depth0)) != null ? stack1.length : stack1), depth0))
-    + "</span>&nbsp;vet ikke\r\n        <hr>\r\n"
+    + "</span>&nbsp;VET IKKE\r\n        <hr>\r\n"
     + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.maybeAttendingList : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "    </div>\r\n</div>\r\n";
 },"useData":true});
@@ -101,7 +101,7 @@ templates['notAttendingBox'] = template({"1":function(container,depth0,helpers,p
 
   return "<div id=\"notAttendingBox\" class=\"panel panel-default gray-box\">\r\n    <div class=\"panel-body\">\r\n        <span class=\"player-count\">"
     + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? depth0.notAttendingList : depth0)) != null ? stack1.length : stack1), depth0))
-    + "</span>&nbsp;kommer ikke\r\n        <hr>\r\n"
+    + "</span>&nbsp;KOMMER IKKE\r\n        <hr>\r\n"
     + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.notAttendingList : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "    </div>\r\n</div>\r\n";
 },"useData":true});

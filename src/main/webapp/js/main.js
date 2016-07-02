@@ -25,7 +25,7 @@ $(document).ready(function(){
         if (training.status === 'MAYBE_ON_TRAINING_DAY') {
             return "Ser dårlig ut...";
         }
-        return "Kansje...";
+        return "Kanskje...";
     });
 
     Handlebars.registerHelper('statusSubTitle', function(training) {
