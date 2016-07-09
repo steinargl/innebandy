@@ -30,7 +30,7 @@ $(document).ready(function(){
 
     Handlebars.registerHelper('statusSubTitle', function(training) {
         if (training.status === 'YES') {
-            return training.isAttendingList.length + " stk. har meldt seg på så langt";
+            return training.attendingList.length + " stk. har meldt seg på så langt";
         }
         if (training.status === 'NO') {
             return "Satser på bedre oppmøte neste gang...";

@@ -26,14 +26,14 @@ INSERT INTO user_roles (username, role) values ('anders', 'USER');
 
 
 INSERT INTO attendance (username, date, type) values ('steinar', '2016-07-05', 'ATTEND');
-INSERT INTO attendance (username, date, type) values ('steinar', '2016-06-21', 'ATTEND');
+INSERT INTO attendance (username, date, type) values ('steinar', '2016-07-12', 'ATTEND');
 
-INSERT INTO attendance (username, date, type) values ('jarle', '2016-07-05', 'ATTEND');
-INSERT INTO attendance (username, date, type) values ('fredrik', '2016-07-05', 'ATTEND');
-INSERT INTO attendance (username, date, type) values ('henrik', '2016-07-05', 'ATTEND');
-INSERT INTO attendance (username, date, type) values ('lars petter', '2016-07-05', 'ATTEND');
-INSERT INTO attendance (username, date, type) values ('johnny', '2016-07-05', 'NOT_ATTEND');
-INSERT INTO attendance (username, date, type) values ('sjur', '2016-07-05', 'NOT_ATTEND');
+INSERT INTO attendance (username, date, type) values ('jarle', '2016-07-12', 'ATTEND');
+INSERT INTO attendance (username, date, type) values ('fredrik', '2016-07-12', 'ATTEND');
+INSERT INTO attendance (username, date, type) values ('henrik', '2016-07-12', 'ATTEND');
+INSERT INTO attendance (username, date, type) values ('lars petter', '2016-07-12', 'ATTEND');
+INSERT INTO attendance (username, date, type) values ('johnny', '2016-07-12', 'NOT_ATTEND');
+INSERT INTO attendance (username, date, type) values ('sjur', '2016-07-12', 'NOT_ATTEND');
 
 
 UPDATE attendance set type='NOT_ATTEND' WHERE username in ('fredrik');
