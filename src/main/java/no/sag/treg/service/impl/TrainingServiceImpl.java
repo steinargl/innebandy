@@ -20,7 +20,6 @@ import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-@Transactional
 @Service
 public class TrainingServiceImpl implements TrainingService
 {
@@ -38,13 +37,14 @@ public class TrainingServiceImpl implements TrainingService
 
 
     @Override
+    @Transactional
     public TrainingDto getTraining(final String username)
     {
         Preconditions.checkNotNull(username, "username is required");
 
         final LocalDate nextTrainingDate = calendarService.nextTrainingDate();
 
-        final Set<User> users = userRepository.findByEnabled(true);
+        final List<User> users = userRepository.findByEnabled(true);
 
         final int traingTimes = 52 - 33 + 1;
         final int dayPrice = (int)Math.ceil((180.0 * 2.0) / users.size());
@@ -80,7 +80,7 @@ public class TrainingServiceImpl implements TrainingService
             .build();
     }
 
-    private List<UserDto> createList(final Set<User> users, final Predicate<Attendance> predicate)
+    private List<UserDto> createList(final List<User> users, final Predicate<Attendance> predicate)
     {
         final List<UserDto> userDtos = new ArrayList<>();
         for (User user : users) {
@@ -92,7 +92,7 @@ public class TrainingServiceImpl implements TrainingService
         return userDtos;
     }
 
-    private UserDto getCurrentUser(final String username, final LocalDate nextTrainingDate, final Set<User> users)
+    private UserDto getCurrentUser(final String username, final LocalDate nextTrainingDate, final List<User> users)
     {
         final Optional<User> currentUser = users.stream().filter(u -> u.getUsername().equals(username)).findFirst();
         if (!currentUser.isPresent()) {

@@ -39,9 +39,9 @@ templates['decisionBox'] = template({"1":function(container,depth0,helpers,parti
     + container.escapeExpression(container.lambda(((stack1 = ((stack1 = (depth0 != null ? depth0.currentUser : depth0)) != null ? stack1.attendance : stack1)) != null ? stack1.id : stack1), depth0))
     + "\">\r\n";
 },"3":function(container,depth0,helpers,partials,data) {
-    return " selected";
+    return "                        <option></option>\r\n";
 },"5":function(container,depth0,helpers,partials,data) {
-    return "Kanskje";
+    return " selected";
 },"7":function(container,depth0,helpers,partials,data) {
     return "            <div style=\"height:20px;\"><h4 id=\"decision\" style=\"display:none\">Svaret ditt er registrert</h4></div>\r\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -49,28 +49,28 @@ templates['decisionBox'] = template({"1":function(container,depth0,helpers,parti
 
   return "<div id=\"decisionBox\" class=\"panel panel-default blue-box\">\r\n    <div class=\"panel-body\">\r\n        <h3>Kommer du på trening i dag?</h3>\r\n        <form id=\"decisionForm\">\r\n"
     + ((stack1 = helpers["if"].call(alias1,((stack1 = (depth0 != null ? depth0.currentUser : depth0)) != null ? stack1.attendance : stack1),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "            <div id=\"decisionSelect\" class=\"form-group\">\r\n                <select name=\"attendanceTypeId\" class=\"form-control\" style=\"padding:5px;font-size: 120%;\">\r\n                    <option value=\"NOT_DECIDED\""
-    + ((stack1 = (helpers.equal || (depth0 && depth0.equal) || alias2).call(alias1,((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.currentUser : depth0)) != null ? stack1.attendance : stack1)) != null ? stack1.attendanceType : stack1)) != null ? stack1.id : stack1),"UNDECIDED",{"name":"equal","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + ">"
-    + ((stack1 = helpers["if"].call(alias1,((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.currentUser : depth0)) != null ? stack1.attendance : stack1)) != null ? stack1.attendanceType : stack1)) != null ? stack1.id : stack1),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "</option>\r\n                    <option value=\"ATTEND\""
-    + ((stack1 = (helpers.equal || (depth0 && depth0.equal) || alias2).call(alias1,((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.currentUser : depth0)) != null ? stack1.attendance : stack1)) != null ? stack1.attendanceType : stack1)) != null ? stack1.id : stack1),"ATTEND",{"name":"equal","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "            <div id=\"decisionSelect\" class=\"form-group\">\r\n                <select name=\"attendanceTypeId\" class=\"form-control\" style=\"padding:5px;font-size: 120%;\">\r\n"
+    + ((stack1 = helpers.unless.call(alias1,((stack1 = (depth0 != null ? depth0.currentUser : depth0)) != null ? stack1.attendance : stack1),{"name":"unless","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "                    <option value=\"ATTEND\""
+    + ((stack1 = (helpers.equal || (depth0 && depth0.equal) || alias2).call(alias1,((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.currentUser : depth0)) != null ? stack1.attendance : stack1)) != null ? stack1.attendanceType : stack1)) != null ? stack1.id : stack1),"ATTEND",{"name":"equal","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + ">Kommer</option>\r\n                    <option value=\"NOT_ATTEND\""
-    + ((stack1 = (helpers.equal || (depth0 && depth0.equal) || alias2).call(alias1,((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.currentUser : depth0)) != null ? stack1.attendance : stack1)) != null ? stack1.attendanceType : stack1)) != null ? stack1.id : stack1),"NOT_ATTEND",{"name":"equal","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + ">Kommer ikke</option>\r\n                </select>\r\n            </div>\r\n        </form>\r\n"
+    + ((stack1 = (helpers.equal || (depth0 && depth0.equal) || alias2).call(alias1,((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.currentUser : depth0)) != null ? stack1.attendance : stack1)) != null ? stack1.attendanceType : stack1)) != null ? stack1.id : stack1),"NOT_ATTEND",{"name":"equal","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ">Kommer ikke</option>\r\n                    <option value=\"NOT_DECIDED\""
+    + ((stack1 = (helpers.equal || (depth0 && depth0.equal) || alias2).call(alias1,((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.currentUser : depth0)) != null ? stack1.attendance : stack1)) != null ? stack1.attendanceType : stack1)) != null ? stack1.id : stack1),"NOT_DECIDED",{"name":"equal","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ">Vet ikke</option>\r\n                </select>\r\n            </div>\r\n        </form>\r\n"
     + ((stack1 = helpers["if"].call(alias1,((stack1 = ((stack1 = ((stack1 = (depth0 != null ? depth0.currentUser : depth0)) != null ? stack1.attendance : stack1)) != null ? stack1.attendanceType : stack1)) != null ? stack1.id : stack1),{"name":"if","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "    </div>\r\n</div>\r\n";
 },"useData":true});
 templates['infoBox'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-  return "<div class=\"panel panel-default yellow-box\">\r\n    <div class=\"panel-body\">\r\n        <p>\r\n            Trening på tirsdager fra kl 20.00 til kl 22.00 i <a href=\"https://www.google.no/maps/place/Gaustadhallen/@59.2659743,10.7717805,15z/data=!4m5!3m4!1s0x0:0xe28d42b4c8661585!8m2!3d59.2659743!4d10.7717805\">Gaustadhallen</a>\r\n        </p>\r\n        <p>\r\n            Første trening blir tirsdag 16. August og siste trening blir 27. desember.\r\n        </p>\r\n        <p>\r\n            Pris per gang er kr "
+  return "<div class=\"panel panel-default yellow-box\">\r\n    <div class=\"panel-body\">\r\n        <p>\r\n            Trening på tirsdager fra kl 20.00 til kl 22.00 i <a href=\"https://www.google.no/maps/place/Gaustadhallen/@59.2659743,10.7717805,15z/data=!4m5!3m4!1s0x0:0xe28d42b4c8661585!8m2!3d59.2659743!4d10.7717805\">Gaustadhallen</a>\r\n        </p>\r\n        <p>\r\n            Første trening blir tirsdag 16. August og siste trening blir 27. desember.\r\n        </p>\r\n        <p>\r\n            Priser\r\n            <table class=\"table\">\r\n                <tbody>\r\n                    <tr>\r\n                        <td><small>Per trening</small></td>\r\n                        <td>kr "
     + alias4(((helper = (helper = helpers.dayPrice || (depth0 != null ? depth0.dayPrice : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"dayPrice","hash":{},"data":data}) : helper)))
-    + ",-<br>\r\n            Pris per måned er kr "
+    + ",-</td>\r\n                    </tr>\r\n                    <tr>\r\n                        <td>Per måned</td>\r\n                        <td>kr "
     + alias4(((helper = (helper = helpers.monthlyPrice || (depth0 != null ? depth0.monthlyPrice : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"monthlyPrice","hash":{},"data":data}) : helper)))
-    + ",-<br>\r\n            Pris for hele perioden er kr "
+    + ",-</td>\r\n                    </tr>\r\n                    <tr>\r\n                        <td>Hele perioden</td>\r\n                        <td>kr "
     + alias4(((helper = (helper = helpers.seasonPrice || (depth0 != null ? depth0.seasonPrice : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"seasonPrice","hash":{},"data":data}) : helper)))
-    + ",-<br>\r\n            Betal med <a href=\"https://www.vipps.no/sos.html\">Vipps</a> til 91193609\r\n        </p>\r\n    </div>\r\n</div>\r\n";
+    + ",-</td>\r\n                    </tr>\r\n                    </tbody>\r\n            </table>\r\n            Betal med <a href=\"https://www.vipps.no/sos.html\">Vipps</a> til 91193609\r\n        </p>\r\n    </div>\r\n</div>\r\n";
 },"useData":true});
 templates['login'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "<div id=\"login\">\r\n    <form id=\"loginform\">\r\n        <fieldset class=\"form-group\">\r\n            <label for=\"uid\">Brukernavn</label>\r\n            <input type=\"userid\" class=\"form-control\" id=\"uid\" placeholder=\"Brukernavn\">\r\n        </fieldset>\r\n        <fieldset class=\"form-group\">\r\n            <label for=\"pwd\">Passord</label>\r\n            <input type=\"password\" class=\"form-control\" id=\"pwd\" placeholder=\"Passord\">\r\n        </fieldset>\r\n        <button type=\"submit\" id=\"btnLogin\" class=\"btn btn-primary\">OK</button>\r\n    </form>\r\n</div>\r\n";

@@ -1,27 +1,33 @@
 package no.sag.treg.data.model;
 
-import javax.persistence.*;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
-@Entity
-@Table(name = "users")
 public class User
 {
-    @Id
-    @Column(name = "username", nullable = false)
     private String username;
 
-    @OneToMany(mappedBy="user")
-    private Set<Role> roles;
-
-    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "enabled", nullable = false)
     private boolean enabled;
 
-    @OneToMany(mappedBy="user")
-    private Set<Attendance> attendences;
+    private List<Attendance> attendences = new ArrayList<>();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+
+        User user = (User) o;
+
+        return username.equals(user.username);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return username.hashCode();
+    }
 
     public String getUsername() {
         return username;
@@ -47,11 +53,11 @@ public class User
         this.enabled = enabled;
     }
 
-    public Set<Attendance> getAttendences() {
+    public List<Attendance> getAttendences() {
         return attendences;
     }
 
-    public void setAttendences(Set<Attendance> attendences) {
+    public void setAttendences(List<Attendance> attendences) {
         this.attendences = attendences;
     }
 }

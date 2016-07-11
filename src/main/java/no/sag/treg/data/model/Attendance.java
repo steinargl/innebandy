@@ -1,26 +1,12 @@
 package no.sag.treg.data.model;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "attendance")
 public class Attendance
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name="username")
     private User user;
-
-    @Column(name="date", nullable=false)
     private LocalDate date;
-
-    @Column(name="type", columnDefinition = "enum('ATTEND','NOT_ATTEND', 'NOT_DECIDED')", nullable = false)
-    @Enumerated(EnumType.STRING)
     private AttendanceType attendanceType;
 
     public boolean attending()

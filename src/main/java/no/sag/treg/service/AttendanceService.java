@@ -5,7 +5,7 @@ import no.sag.treg.view.dto.AttendanceDto;
 
 public interface AttendanceService
 {
-    AttendanceDto createAttendance(String username, AttendanceType attendanceType);
+    void createAttendance(String username, AttendanceType attendanceType);
 
-    AttendanceDto updateAttendance(Long attendenceId, AttendanceType attendanceType);
+    void updateAttendance(Long attendenceId, AttendanceType attendanceType);
 }

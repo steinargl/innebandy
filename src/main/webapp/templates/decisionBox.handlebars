@@ -7,9 +7,12 @@
             {{/if}}
             <div id="decisionSelect" class="form-group">
                 <select name="attendanceTypeId" class="form-control" style="padding:5px;font-size: 120%;">
-                    <option value="NOT_DECIDED"{{#equal currentUser.attendance.attendanceType.id "UNDECIDED"}} selected{{/equal}}>{{#if currentUser.attendance.attendanceType.id}}Kanskje{{/if}}</option>
+                    {{#unless currentUser.attendance}}
+                        <option></option>
+                    {{/unless}}
                     <option value="ATTEND"{{#equal currentUser.attendance.attendanceType.id "ATTEND"}} selected{{/equal}}>Kommer</option>
                     <option value="NOT_ATTEND"{{#equal currentUser.attendance.attendanceType.id "NOT_ATTEND"}} selected{{/equal}}>Kommer ikke</option>
+                    <option value="NOT_DECIDED"{{#equal currentUser.attendance.attendanceType.id "NOT_DECIDED"}} selected{{/equal}}>Vet ikke</option>
                 </select>
             </div>
         </form>

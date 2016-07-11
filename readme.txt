@@ -32,11 +32,8 @@ Now you can use the following syntax in the command prompt:
 where <input> is an original template file name, and <output> is a pre-compliled template file name.
 ql
 
-
 ***********************
-* Colors              *
+* RUN CONFIGURATION   *
 ***********************
-#2B2B2B
-#DE1B1B
-#F6F6F6
-#E9E581
+local: spring-boot:run
+local (with production config): spring-boot:run -Dspring.profiles.active=production
