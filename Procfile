@@ -1,1 +1,1 @@
-web: java -jar -Dspring.profiles.active=prod target/dependency/jetty-runner.jar --port $PORT target/*.war
+web: java -jar -Dspring.profiles.active=prod target/innebandy-0.1.0.jar --port $PORT target/*.war
