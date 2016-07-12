@@ -1,1 +1,1 @@
-web: java -jar -Dspring.profiles.active=prod target/innebandy-0.1.0.jar --port $PORT target/*.war
+web: java -jar -Dspring.profiles.active=prod -Dserver.port=$PORT target/innebandy-0.1.0.jar
