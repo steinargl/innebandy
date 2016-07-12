@@ -15,7 +15,6 @@ Or you can build the JAR file with mvn clean package and run the JAR by typing: 
 ***********************
 * HTML TEMPLATES      *
 ***********************
-
 handlebars.js is use for html templating
 
 Installation:
@@ -32,8 +31,15 @@ Now you can use the following syntax in the command prompt:
 where <input> is an original template file name, and <output> is a pre-compliled template file name.
 ql
 
+
 ***********************
 * RUN CONFIGURATION   *
 ***********************
 local: spring-boot:run
 local (with production config): spring-boot:run -Dspring.profiles.active=production
+
+
+************************
+* DEPLOY APP ON HEROKU *
+************************
+https://devcenter.heroku.com/articles/deploying-spring-boot-apps-to-heroku#preparing-a-spring-boot-app-for-heroku
