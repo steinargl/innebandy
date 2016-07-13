@@ -15,8 +15,8 @@ public class ProductionConfiguration
     public DataSource dataSource()
     {
         return DataSourceBuilder.create()
-            .url("jdbc:mysql://glamseter.mysql.domeneshop.no:3306/glamseter")
-            .driverClassName("com.mysql.jdbc.Driver")
+            .url("jdbc:mariadb://glamseter.mysql.domeneshop.no:3306/glamseter")
+            .driverClassName("org.mariadb.jdbc.Driver")
             .username("glamseter")
             .password("qTDYPrLBGk66weq")
             .build();

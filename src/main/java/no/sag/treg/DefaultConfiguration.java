@@ -13,8 +13,8 @@ public class DefaultConfiguration
     public DataSource dataSource()
     {
         return DataSourceBuilder.create()
-            .url("jdbc:mysql://localhost:3306/innebandy")
-            .driverClassName("com.mysql.jdbc.Driver")
+            .url("jdbc:mariadb://localhost:3306/innebandy")
+            .driverClassName("org.mariadb.jdbc.Driver")
             .username("root")
             .password("Vinter2015")
             .build();
