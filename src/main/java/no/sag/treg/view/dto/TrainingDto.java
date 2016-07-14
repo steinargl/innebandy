@@ -5,6 +5,7 @@ import com.google.common.base.Preconditions;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 
 public class TrainingDto
 {
@@ -86,7 +87,8 @@ public class TrainingDto
 
     public static class TrainingDtoBuilder extends AbstractDtoBuilder
     {
-        private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("EEEE d. LLLL yyyy");
+        private static final DateTimeFormatter DATE_FORMATTER =
+                DateTimeFormatter.ofPattern("EEEE d. LLLL yyyy", Locale.forLanguageTag("nb-NO") );
 
         private String status;
         private UserDto currentUser;
