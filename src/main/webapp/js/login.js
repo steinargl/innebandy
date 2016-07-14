@@ -5,6 +5,12 @@ var Login = (function() {
             $('#page').html(loginHtml);
             $('#page').hide();
             $('#page').show();
+        },
+        displayLoginWithErrorMsg: function() {
+            var loginHtml = Handlebars.templates.login({showErrorMessage:true});
+            $('#page').html(loginHtml);
+            $('#page').hide();
+            $('#page').show();
         }
     }
 

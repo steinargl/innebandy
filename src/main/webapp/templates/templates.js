@@ -72,8 +72,14 @@ templates['infoBox'] = template({"compiler":[7,">= 4.0.0"],"main":function(conta
     + alias4(((helper = (helper = helpers.seasonPrice || (depth0 != null ? depth0.seasonPrice : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"seasonPrice","hash":{},"data":data}) : helper)))
     + ",-</td>\r\n                    </tr>\r\n                    </tbody>\r\n            </table>\r\n            Betal med <a href=\"https://www.vipps.no/sos.html\">Vipps</a> til 91193609\r\n        </p>\r\n    </div>\r\n</div>\r\n";
 },"useData":true});
-templates['login'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<div id=\"login\">\r\n    <form id=\"loginform\">\r\n        <fieldset class=\"form-group\">\r\n            <label for=\"uid\">Brukernavn</label>\r\n            <input type=\"userid\" class=\"form-control\" id=\"uid\" placeholder=\"Brukernavn\">\r\n        </fieldset>\r\n        <fieldset class=\"form-group\">\r\n            <label for=\"pwd\">Passord</label>\r\n            <input type=\"password\" class=\"form-control\" id=\"pwd\" placeholder=\"Passord\">\r\n        </fieldset>\r\n        <button type=\"submit\" id=\"btnLogin\" class=\"btn btn-primary\">OK</button>\r\n    </form>\r\n</div>\r\n";
+templates['login'] = template({"1":function(container,depth0,helpers,partials,data) {
+    return "            <div class=\"alert alert-info\" role=\"alert\">\r\n                <p>Feil brukernavn eller passord.</p>\r\n            </div>\r\n";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "<div id=\"login\">\r\n    <form id=\"loginform\">\r\n        <fieldset class=\"form-group\">\r\n            <label for=\"uid\">Brukernavn</label>\r\n            <input type=\"userid\" class=\"form-control\" id=\"uid\" placeholder=\"Brukernavn\">\r\n        </fieldset>\r\n        <fieldset class=\"form-group\">\r\n            <label for=\"pwd\">Passord</label>\r\n            <input type=\"password\" class=\"form-control\" id=\"pwd\" placeholder=\"Passord\">\r\n        </fieldset>\r\n"
+    + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.showErrorMessage : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "        <button type=\"submit\" id=\"btnLogin\" class=\"btn btn-primary\">OK</button>\r\n    </form>\r\n</div>\r\n";
 },"useData":true});
 templates['maybeAttendingBox'] = template({"1":function(container,depth0,helpers,partials,data) {
     var helper;

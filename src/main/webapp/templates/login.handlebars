@@ -8,6 +8,11 @@
             <label for="pwd">Passord</label>
             <input type="password" class="form-control" id="pwd" placeholder="Passord">
         </fieldset>
+        {{#if showErrorMessage}}
+            <div class="alert alert-info" role="alert">
+                <p>Feil brukernavn eller passord.</p>
+            </div>
+        {{/if}}
         <button type="submit" id="btnLogin" class="btn btn-primary">OK</button>
     </form>
 </div>

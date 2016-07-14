@@ -61,7 +61,11 @@ $(document).ready(function(){
 
 $(document).ajaxError(function(event,xhr,options,exc) {
     if (xhr.status === 401) {
-        Login.displayLogin();
+        if (xhr.responseJSON.path === "/login") {
+            Login.displayLoginWithErrorMsg();
+        } else {
+            Login.displayLogin();
+        }
     }
     else {
         Error.displayError();
