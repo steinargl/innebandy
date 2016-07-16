@@ -3,44 +3,50 @@
         <meta charset="utf-8">
         <title>t-Reg</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press Start 2P" type="text/css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bungee Shade" type="text/css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Faster One" type="text/css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Russo One" type="text/css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
         <!--link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/-->
         <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css" rel="stylesheet"/>
         <link href="/css/innebandy.css" rel="stylesheet"/>
     </head>
     <body>
         <div class="container-fluid">
-            <h1><small>Innebandy&nbsp;for&nbsp;seniorer</small></h1>
+            <h1 style="font-family: 'Faster One', serif;margin:0;">Manstad innebandy</h1>
         </div>
-        <nav class="navbar navbar-inverse">
+        <nav class="navbar navbar-inverse" style="font-size:130%;">
             <div class="container-fluid">
+                <div id="navbar-content" style="display:none;">
                 <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Brand</a>
-                </div>
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
 
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Hjem <span class="sr-only">(current)</span></a></li>
-                        <li><a href="#">Spillere</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Link</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a id="btnLogout" href="#">Logout</a></li>
-                                <li><a href="#">Another action</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li><p id="username" class="navbar-text">Velkommen&nbsp;{username}!</p></li>
+                            <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;Hjem</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-fire"></span>&nbsp;Spillere</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a id="" href="#"><span class="glyphicon glyphicon-cog"></span>&nbsp;Instillinger</a></li>
+                                    <li><a id="btnLogout" href="#"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>

@@ -29,15 +29,8 @@ public class TrainingStatusServiceImpl implements TrainingStatusService
         else if (isAttendingCount >= limit) {
             return TrainingStatus.YES;
         }
-        else if (LocalDate.now().equals(nextTrainingDate)) {
-            return TrainingStatus.MAYBE_ON_TRAINING_DAY;
-        }
-        else if (LocalDate.now().isBefore(nextTrainingDate)) {
-            return TrainingStatus.MAYBE_BEFORE_TRAINING_DAY;
-        }
         else {
-            throw new IllegalStateException(String.format("Invalid training state. Time=%s. Limit=%s.",
-                LocalDateTime.now().toString(), limit));
+            return TrainingStatus.MAYBE;
         }
     }
 }

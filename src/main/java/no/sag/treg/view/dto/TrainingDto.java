@@ -3,6 +3,7 @@ package no.sag.treg.view.dto;
 import com.google.common.base.Preconditions;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
@@ -11,7 +12,8 @@ public class TrainingDto
 {
     private final String status;
     private final UserDto currentUser;
-    private final String date;
+    private final String formattedDate;
+    private final String isoDate;
     private final List<UserDto> attendingList;
     private final List<UserDto> notAttendingList;
     private final List<UserDto> maybeAttendingList;
@@ -19,12 +21,15 @@ public class TrainingDto
     private int seasonPrice;
     private int monthlyPrice;
     private int dayPrice;
+    private String datetime;
+    private String datetime2;
 
     private TrainingDto(TrainingDtoBuilder builder)
     {
         this.status = builder.status;
         this.currentUser = builder.currentUser;
-        this.date = builder.date;
+        this.formattedDate = builder.formattedDate;
+        this.isoDate = builder.isoDate;
         this.attendingList = builder.attendingList;
         this.notAttendingList = builder.notAttendingList;
         this.maybeAttendingList = builder.maybeAttendingList;
@@ -32,6 +37,13 @@ public class TrainingDto
         this.seasonPrice = builder.seasonPrice;
         this.monthlyPrice = builder.monthlyPrice;
         this.dayPrice = builder.dayPrice;
+
+        DateTimeFormatter ISO_DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        datetime = ISO_DATE_FORMATTER.format(LocalDateTime.now());
+
+        DateTimeFormatter ISO_DATE_FORMATTER2 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm", Locale.forLanguageTag("nb-NO"));
+        datetime2 = ISO_DATE_FORMATTER2.format(LocalDateTime.now());
+
     }
 
     public String getStatus() {
@@ -47,8 +59,12 @@ public class TrainingDto
         return limit - attendingList.size();
     }
 
-    public String getDate() {
-        return date;
+    public String getFormattedDate() {
+        return formattedDate;
+    }
+
+    public String getIsoDate() {
+        return isoDate;
     }
 
     public List<UserDto> getAttendingList() {
@@ -79,6 +95,15 @@ public class TrainingDto
         return dayPrice;
     }
 
+
+    public String getDatetime() {
+        return datetime;
+    }
+
+    public String getDatetime2() {
+        return datetime2;
+    }
+
     public static TrainingDtoBuilder createBuilder()
     {
         return new TrainingDtoBuilder();
@@ -87,12 +112,15 @@ public class TrainingDto
 
     public static class TrainingDtoBuilder extends AbstractDtoBuilder
     {
+        private static final DateTimeFormatter ISO_DATE_FORMATTER =
+                DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.forLanguageTag("nb-NO"));
         private static final DateTimeFormatter DATE_FORMATTER =
-                DateTimeFormatter.ofPattern("EEEE d. LLLL yyyy", Locale.forLanguageTag("nb-NO") );
+                DateTimeFormatter.ofPattern("EEEE d. LLLL yyyy", Locale.forLanguageTag("nb-NO"));
 
         private String status;
         private UserDto currentUser;
-        private String date;
+        private String formattedDate;
+        private String isoDate;
         private List<UserDto> attendingList;
         private List<UserDto> notAttendingList;
         private List<UserDto> maybeAttendingList;
@@ -105,7 +133,7 @@ public class TrainingDto
         {
             Preconditions.checkNotNull(status, "status is required");
             Preconditions.checkNotNull(currentUser, "currentUser is required");
-            Preconditions.checkNotNull(date, "date is required");
+            Preconditions.checkNotNull(formattedDate, "formattedDate is required");
             Preconditions.checkNotNull(attendingList, "attendingList is required");
             Preconditions.checkNotNull(notAttendingList, "notAttendingList is required");
             Preconditions.checkNotNull(maybeAttendingList, "maybeAttendingList is required");
@@ -113,7 +141,6 @@ public class TrainingDto
             Preconditions.checkNotNull(seasonPrice, "seasonPrice is required");
             Preconditions.checkNotNull(monthlyPrice, "monthlyPrice is required");
             Preconditions.checkNotNull(dayPrice, "dayPrice is required");
-
             return new TrainingDto(this);
         }
 
@@ -123,7 +150,8 @@ public class TrainingDto
         }
 
         public TrainingDtoBuilder date(final LocalDate date) {
-            this.date = DATE_FORMATTER.format(date);
+            this.formattedDate = DATE_FORMATTER.format(date);
+            this.isoDate = ISO_DATE_FORMATTER.format(date);
             return this;
         }
 

@@ -9,26 +9,33 @@ $(document).ready(function(){
         if (training.status === 'NO') {
             return "failure";
         }
-        if (training.status === 'MAYBE_ON_TRAINING_DAY') {
+        if (isToday(training.isoDate) && training.status === 'MAYBE') {
             return "warning";
         }
         return "maybe";
     });
 
-    Handlebars.registerHelper('statusTitle', function(training) {
+    Handlebars.registerHelper('text1', function(training) {
+        if (training.today) {
+            return "Status for trening i dag";
+        }
+        return "Status for neste trening - " + training.date;
+    });
+
+    Handlebars.registerHelper('text2', function(training) {
         if (training.status === 'YES') {
             return "The game is on!!!";
         }
         if (training.status === 'NO') {
             return "Ingen trening i dag";
         }
-        if (training.status === 'MAYBE_ON_TRAINING_DAY') {
+        if (isToday(training.isoDate) && training.status === 'MAYBE') {
             return "Ser dårlig ut...";
         }
-        return "Kanskje...";
+        return "Foreløpig usikkert...";
     });
 
-    Handlebars.registerHelper('statusSubTitle', function(training) {
+    Handlebars.registerHelper('text3', function(training) {
         if (training.status === 'YES') {
             return training.attendingList.length + " stk. har meldt seg på så langt";
         }
@@ -53,11 +60,21 @@ $(document).ready(function(){
         }
     });
 
+    Handlebars.registerHelper('decisionText', function(training) {
+        if (isToday(training.isoDate)) {
+            return "Kommer du på trening i dag";
+        }
+        return "Status for neste trening - " + training.date;
+    });
 
     Training.displayTraining();
 
 });
 
+function isToday(date) {
+
+    return false;
+}
 
 $(document).ajaxError(function(event,xhr,options,exc) {
     if (xhr.status === 401) {

@@ -20,18 +20,17 @@ $(document).on("click", "#btnLogin", function(e) {
     event.preventDefault();
     var data = 'username=' + $('#uid').val() + '&password=' + $('#pwd').val();
     $.ajax({
-      data: data,
-      //timeout: 1000,
-      type: 'POST',
-      url: '/login'
-
-    }).done(function(data, textStatus, jqXHR) {
-     // var preLoginInfo = JSON.parse($.cookie('dashboard.pre.login.request'));
-      //window.location = preLoginInfo.url;AttendanceResult
-      Training.displayTraining();
-
-    }).fail(function(jqXHR, textStatus, errorThrown) {
-        alert('Booh! Wrong credentials, try again!');
+        data: data,
+        type: 'POST',
+        url: '/login',
+        success: function(data, textStatus, jqXHR) {
+            // var preLoginInfo = JSON.parse($.cookie('dashboard.pre.login.request'));
+            //window.location = preLoginInfo.url;AttendanceResult
+            Training.displayTraining();
+        },
+        fail: function(jqXHR, textStatus, errorThrown) {
+            alert('Booh! Wrong credentials, try again!');
+        }
     });
 });
 
@@ -44,6 +43,7 @@ $(document).on("click", "#btnLogout", function(e) {
       url: '/logout'
     }).done(function(data, textStatus, jqXHR) {
         window.location = '/';
+        $("#greeting").html("Ikke logget inn");
     }).fail(function(jqXHR, textStatus, errorThrown) {
         alert('Booh! Logout failed');
     });

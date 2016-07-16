@@ -3,12 +3,16 @@
         {{>bigStatusBox}}
     </div>
 </div>
+
+{{datetime}}<br>
+{{datetime2}}<br>
+
 <div class="row">
     <div class="col-sm-7">
         {{>decisionBox}}
     </div>
     <div class="col-sm-5">
-        {{>infoBox}}
+        {{>infoBox1}}
     </div>
 </div>
 <div class="row">
@@ -16,9 +20,15 @@
         {{>attendingBox}}
     </div>
     <div class="col-sm-4">
-        {{>notAttendingBox}}
-    </div>
-    <div class="col-sm-4">
         {{>maybeAttendingBox}}
     </div>
+    <div class="col-sm-4">
+        {{>notAttendingBox}}
+    </div>
 </div>
+<div class="row">
+    <div class="col-sm-5">
+        {{>infoBox2}}
+    </div>
+</div>
+

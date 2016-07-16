@@ -7,6 +7,9 @@ var Training = (function() {
                 var trainingHtml = Handlebars.templates.training(training);
                 $('#page').html(trainingHtml);
                 _initEventHandlers(training);
+
+                $('#username').html($('#username').text().replace("{username}", training.currentUser.username));
+                $('#navbar-content').show(500);
             },
             beforeSend: function() {
                 $('#page').hide();

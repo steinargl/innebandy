@@ -1,5 +1,13 @@
 body {
-  font-family: "Arial Black", Gadget, sans-serif
+  /*font-family: "Arial Black", Gadget, sans-serif*/
+  font-family: "Russo One", Gadget, sans-serif;
+}
+
+.ball {
+    background-image: url('/images/ball.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: left;
 }
 
 .spinner {
@@ -8,6 +16,39 @@ body {
     background-color: #cccccc;
     width:52px; /*width of your image*/
     height:52px; /*height of your image*/
+}
+
+@media (max-width: 768px) {
+    .container {
+      padding:0;
+      margin:0;
+    }
+
+    body {
+      padding:0;
+    }
+
+    .navbar-fixed-top, .navbar-fixed-bottom, .navbar-static-top {
+      margin-left: 0;
+      margin-right: 0;
+      margin-bottom:0;
+    }
+}
+
+#loginform label {
+    font-size: 160%;
+    font-weight: normal;
+}
+
+#loginform input {
+    font-size: 130%;
+    font-weight: normal;
+    height:40px;
+}
+
+#loginform button {
+    font-size: 130%;
+    font-weight: normal;
 }
 
 /*body {overflow-y:scroll;}*/
@@ -81,7 +122,23 @@ body {
     border-style: solid;
 }
 
-.isattending-box {
+.red-box {
+    background-color: #ff3333;
+    color: #2F3131;
+    padding:10px;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.yellow-box {
+    background-color: #F2F5A9;
+    color: #2F3131;
+    padding:10px;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.green-box {
     /*background-image: url("/images/superman.jpg");
     background-repeat: no-repeat;
     background-position: right bottom;*/
@@ -92,10 +149,18 @@ body {
     border-style: solid;
 }
 
-.yellow-box {
+.gold-box {
     background-color: #F8F1E5;
     color: #2F3131;
     padding:10px;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.login-box {
+    background-color: #F6F6F6;
+    color: #2F3131;
+    padding:30px;
     border-width: 1px;
     border-style: solid;
 }
