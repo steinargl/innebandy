@@ -9,7 +9,7 @@
 * RUN THE APPLICATION *
 ***********************
 Run the application using mvn spring-boot:run.
-Or you can build the JAR file with mvn clean package and run the JAR by typing: java -jar target/treg-0.1.0.jar
+Or you can build the JAR file with mvn clean package and run the JAR by typing: java -jar target/innebandy-0.1.0.jar
 
 
 ***********************
@@ -26,7 +26,7 @@ Now you can use the following syntax in the command prompt:
 	handlebars <input> -f <output>
 	
 	compile multiple templates into one javascript:
-	C:\Projects\treg\src\main\webapp\templates>handlebars .\ -f templates.js
+	C:\Projects\innebandy\src\main\webapp\templates>handlebars .\ -f templates.js
 
 where <input> is an original template file name, and <output> is a pre-compliled template file name.
 ql
