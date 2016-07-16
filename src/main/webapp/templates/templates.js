@@ -18,12 +18,12 @@ templates['attendingBox'] = template({"1":function(container,depth0,helpers,part
 templates['bigStatusBox'] = template({"1":function(container,depth0,helpers,partials,data) {
     return "";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing;
+    var stack1, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing;
 
   return "<div id=\"bigStatusBox\" class=\"jumbotron jumbotron-"
     + ((stack1 = (helpers.severity || (depth0 && depth0.severity) || alias2).call(alias1,depth0,{"name":"severity","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "\">\r\n    <h4>Status for neste trening - "
-    + container.escapeExpression(((helper = (helper = helpers.date || (depth0 != null ? depth0.date : depth0)) != null ? helper : alias2),(typeof helper === "function" ? helper.call(alias1,{"name":"date","hash":{},"data":data}) : helper)))
+    + "\">\r\n    <h4>"
+    + ((stack1 = (helpers.decisionText || (depth0 && depth0.decisionText) || alias2).call(alias1,depth0,{"name":"decisionText","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "</h4>\r\n    <h1 class=\"jumbotron-header-"
     + ((stack1 = (helpers.severity || (depth0 && depth0.severity) || alias2).call(alias1,depth0,{"name":"severity","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "\"><b>"
@@ -62,12 +62,12 @@ templates['decisionBox'] = template({"1":function(container,depth0,helpers,parti
     + "    </div>\r\n</div>\r\n";
 },"useData":true});
 templates['infoBox1'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<div class=\"panel panel-default gold-box\">\r\n    <div class=\"panel-body\">\r\n        <p>\r\n            Trening på tirsdager fra kl 20.00 til kl 22.00 i <a href=\"https://www.google.no/maps/place/Gaustadhallen/@59.2659743,10.7717805,15z/data=!4m5!3m4!1s0x0:0xe28d42b4c8661585!8m2!3d59.2659743!4d10.7717805\">Gaustadhallen</a>\r\n        </p>\r\n        <p>\r\n            Første trening blir tirsdag 16. August og siste trening blir 27. desember.\r\n        </p>\r\n    </div>\r\n</div>\r\n";
+    return "<div class=\"panel panel-default info-box\">\r\n    <div class=\"panel-body\">\r\n        <p>\r\n            Trening på tirsdager fra kl 20.00 til kl 22.00 i <a href=\"https://www.google.no/maps/place/Gaustadhallen/@59.2659743,10.7717805,15z/data=!4m5!3m4!1s0x0:0xe28d42b4c8661585!8m2!3d59.2659743!4d10.7717805\">Gaustadhallen</a>\r\n        </p>\r\n        <p>\r\n            Første trening blir tirsdag 16. August og siste trening blir 27. desember.\r\n        </p>\r\n    </div>\r\n</div>\r\n";
 },"useData":true});
 templates['infoBox2'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-  return "<div class=\"panel panel-default gold-box\">\r\n    <div class=\"panel-body\">\r\n        <p>\r\n            <h2>Priser</h2>\r\n            <table class=\"table\">\r\n            <tbody>\r\n            <tr>\r\n                <td><small>Per trening</small></td>\r\n                <td>kr "
+  return "<div class=\"panel panel-default info-box\">\r\n    <div class=\"panel-body\">\r\n        <p>\r\n            <h2>Priser</h2>\r\n            <table class=\"table\">\r\n            <tbody>\r\n            <tr>\r\n                <td><small>Per trening</small></td>\r\n                <td>kr "
     + alias4(((helper = (helper = helpers.dayPrice || (depth0 != null ? depth0.dayPrice : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"dayPrice","hash":{},"data":data}) : helper)))
     + ",-</td>\r\n            </tr>\r\n            <tr>\r\n                <td>Per måned</td>\r\n                <td>kr "
     + alias4(((helper = (helper = helpers.monthlyPrice || (depth0 != null ? depth0.monthlyPrice : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"monthlyPrice","hash":{},"data":data}) : helper)))
@@ -115,15 +115,11 @@ templates['notAttendingBox'] = template({"1":function(container,depth0,helpers,p
     + "    </div>\r\n</div>\r\n";
 },"useData":true});
 templates['training'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+    var stack1;
 
   return "<div class=\"row\">\r\n    <div class=\"col-sm-12\">\r\n"
     + ((stack1 = container.invokePartial(partials.bigStatusBox,depth0,{"name":"bigStatusBox","data":data,"indent":"        ","helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
-    + "    </div>\r\n</div>\r\n\r\n"
-    + alias4(((helper = (helper = helpers.datetime || (depth0 != null ? depth0.datetime : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"datetime","hash":{},"data":data}) : helper)))
-    + "<br>\r\n"
-    + alias4(((helper = (helper = helpers.datetime2 || (depth0 != null ? depth0.datetime2 : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"datetime2","hash":{},"data":data}) : helper)))
-    + "<br>\r\n\r\n<div class=\"row\">\r\n    <div class=\"col-sm-7\">\r\n"
+    + "    </div>\r\n</div>\r\n<div class=\"row\">\r\n    <div class=\"col-sm-7\">\r\n"
     + ((stack1 = container.invokePartial(partials.decisionBox,depth0,{"name":"decisionBox","data":data,"indent":"        ","helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
     + "    </div>\r\n    <div class=\"col-sm-5\">\r\n"
     + ((stack1 = container.invokePartial(partials.infoBox1,depth0,{"name":"infoBox1","data":data,"indent":"        ","helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")

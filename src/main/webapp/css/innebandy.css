@@ -104,14 +104,22 @@ body {
 /***************
  ** BOXES **
  ***************/
+
+
 .blue-box {
     background-color: #4CB5F5;
     color: white;
     padding: 20px;
     border-width: 1px;
     border-style: solid;
-    border-color: #2F3131;
+    border-color: #064d79;
     /*height: 215px;*/
+}
+
+.blue-box hr {
+    color: #064d79;
+    background-color: #064d79;
+    border-color: #064d79;
 }
 
 .gray-box {
@@ -124,41 +132,68 @@ body {
 
 .red-box {
     background-color: #ff3333;
-    color: #2F3131;
+    color: #800000;
     padding:10px;
     border-width: 1px;
     border-style: solid;
+    border-color: #800000;
+    font-size: 120%;
+}
+
+.red-box hr {
+    color: #800000;
+    background-color: #800000;
+    border-color: #800000;
 }
 
 .yellow-box {
     background-color: #F2F5A9;
-    color: #2F3131;
+    color: #595b0b;
     padding:10px;
     border-width: 1px;
     border-style: solid;
+    border-color: #595b0b;
+    font-size: 120%;
+}
+
+.yellow-box hr {
+    color: #595b0b;
+    background-color: #595b0b;
+    border-color: #595b0b;
 }
 
 .green-box {
-    /*background-image: url("/images/superman.jpg");
-    background-repeat: no-repeat;
-    background-position: right bottom;*/
     background-color: #1FDA9A;
-    color: #2F3131;
+    color: #09432e;
     padding: 10px;
     border-width: 1px;
     border-style: solid;
+    border-color: #09432e;
+    font-size: 120%;
 }
 
-.gold-box {
-    background-color: #F8F1E5;
-    color: #2F3131;
+.green-box div hr {
+    color: #09432e;
+    background-color: #09432e;
+    border-color: #09432e;
+}
+
+
+.info-box {
+     /*background-color: #F8F1E5;
+    color: #2F3131;*/
+    background-color:#292c3d;
+    color: white;
     padding:10px;
     border-width: 1px;
     border-style: solid;
+    font-size: 120%;
+    font-family: "Montserrat", Gadget, sans-serif;
 }
 
 .login-box {
     background-color: #F6F6F6;
+    background-color:#292c3d
     color: #2F3131;
     padding:30px;
     border-width: 1px;

@@ -16,7 +16,7 @@ $(document).ready(function(){
     });
 
     Handlebars.registerHelper('text1', function(training) {
-        if (training.today) {
+        if (training.isToday) {
             return "Status for trening i dag";
         }
         return "Status for neste trening - " + training.date;
@@ -64,7 +64,10 @@ $(document).ready(function(){
         if (isToday(training.isoDate)) {
             return "Kommer du på trening i dag";
         }
-        return "Status for neste trening - " + training.date;
+        else if (isYesterday(training.isoDate)) {
+            return "Kommer du på trening i morgen";
+        }
+        return "Status for neste trening - " + training.formattedDate;
     });
 
     Training.displayTraining();
@@ -72,8 +75,16 @@ $(document).ready(function(){
 });
 
 function isToday(date) {
+    var now = new Date();
+    var nowStr = now.getFullYear() + "-" + ('0' + (now.getMonth()+1)).slice(-2) + "-" + ('0' + now.getDate()).slice(-2);
+    return nowStr === date;
+}
 
-    return false;
+function isYesterday(date) {
+    var now = new Date();
+    now.setDate(now.getDate() - 1);
+    var nowStr = now.getFullYear() + "-" + ('0' + (now.getMonth()+1)).slice(-2) + "-" + ('0' + now.getDate()).slice(-2);
+    return nowStr === date;
 }
 
 $(document).ajaxError(function(event,xhr,options,exc) {
