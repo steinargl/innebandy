@@ -6,14 +6,13 @@ var Login = (function() {
             $('#page').hide();
             $('#page').show();
         },
-        displayLoginWithErrorMsg: function() {
-            var loginHtml = Handlebars.templates.login({showErrorMessage:true});
+        displayLoginWithErrorMsg: function(errorMessage) {
+            var loginHtml = Handlebars.templates.login(errorMessage);
             $('#page').html(loginHtml);
             $('#page').hide();
             $('#page').show();
         }
     }
-
 }());
 
 $(document).on("click", "#btnLogin", function(e) {
@@ -29,7 +28,7 @@ $(document).on("click", "#btnLogin", function(e) {
             Training.displayTraining();
         },
         fail: function(jqXHR, textStatus, errorThrown) {
-            alert('Booh! Wrong credentials, try again!');
+            Training.displayLoginWithErrorMsg("Beklager, det har skjedd en uventet feil. Prøv igjen senere");
         }
     });
 });
@@ -38,12 +37,10 @@ $(document).on("click", "#btnLogout", function(e) {
     event.preventDefault();
     $.ajax({
       data: {},
-      timeout: 1000,
       type: 'POST',
       url: '/logout'
     }).done(function(data, textStatus, jqXHR) {
         window.location = '/';
-        $("#greeting").html("Ikke logget inn");
     }).fail(function(jqXHR, textStatus, errorThrown) {
         alert('Booh! Logout failed');
     });

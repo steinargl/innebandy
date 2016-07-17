@@ -60,14 +60,24 @@ $(document).ready(function(){
         }
     });
 
-    Handlebars.registerHelper('decisionText', function(training) {
+    Handlebars.registerHelper('jumbotronText', function(training) {
         if (isToday(training.isoDate)) {
-            return "Kommer du på trening i dag";
+            return "Status for trening i dag";
         }
         else if (isYesterday(training.isoDate)) {
-            return "Kommer du på trening i morgen";
+            return "Status for trening i morgen";
         }
         return "Status for neste trening - " + training.formattedDate;
+    });
+
+    Handlebars.registerHelper('decisionText', function(training) {
+        if (isToday(training.isoDate)) {
+            return "Kommer du på trening i dag?";
+        }
+        else if (isYesterday(training.isoDate)) {
+            return "Kommer du på trening i morgen?";
+        }
+        return "Kommer du på trening til tirsdag?";
     });
 
     Training.displayTraining();
@@ -90,7 +100,7 @@ function isYesterday(date) {
 $(document).ajaxError(function(event,xhr,options,exc) {
     if (xhr.status === 401) {
         if (xhr.responseJSON.path === "/login") {
-            Login.displayLoginWithErrorMsg();
+            Login.displayLoginWithErrorMsg("Feil brukernavn eller passord.");
         } else {
             Login.displayLogin();
         }

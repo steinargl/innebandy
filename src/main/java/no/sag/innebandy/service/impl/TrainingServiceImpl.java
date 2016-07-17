@@ -46,7 +46,7 @@ public class TrainingServiceImpl implements TrainingService
 
         final List<User> users = userRepository.findByEnabled(true);
 
-        final int traingTimes = 52 - 33 + 1;
+        final int traingTimes = 52 - 33 + 1;//20
         final int dayPrice = (int)Math.ceil((180.0 * 2.0) / users.size());
         final int seasonPrice = (int)Math.ceil((traingTimes * 180.0 * 2.0) / users.size());
         final int monthlyPrice =  (int)Math.ceil(seasonPrice / 5.0);

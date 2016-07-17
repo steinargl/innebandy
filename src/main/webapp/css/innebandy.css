@@ -13,9 +13,15 @@ body {
 .spinner {
     display: none;
     background-image: url("/images/spinner.gif");
-    background-color: #cccccc;
     width:52px; /*width of your image*/
     height:52px; /*height of your image*/
+}
+
+.spinner-blue {
+    display: none;
+    background-image: url("/images/spinner-blue.gif");
+    width: 32px; /*width of your image*/
+    height: 32px; /*height of your image*/
 }
 
 @media (max-width: 768px) {
@@ -63,6 +69,7 @@ body {
     background-color: #F6F6F6;
     border-width: 1px;
     border-style: solid;
+    color: #19334d;
 }
 
 .jumbotron h1 {
@@ -172,7 +179,7 @@ body {
     font-size: 120%;
 }
 
-.green-box div hr {
+.green-box hr {
     color: #09432e;
     background-color: #09432e;
     border-color: #09432e;
@@ -189,6 +196,10 @@ body {
     border-style: solid;
     font-size: 120%;
     font-family: "Montserrat", Gadget, sans-serif;
+}
+
+.info-box td {
+    color: white;
 }
 
 .login-box {
@@ -223,6 +234,7 @@ hr {
    padding:10px;
    padding-bottom:60px;   /* Height of the footer */
 }
+
 #footer {
    position:absolute;
    bottom:0;

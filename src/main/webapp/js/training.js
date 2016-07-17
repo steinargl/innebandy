@@ -9,7 +9,7 @@ var Training = (function() {
                 _initEventHandlers(training);
 
                 $('#username').html($('#username').text().replace("{username}", training.currentUser.username));
-                $('#navbar-content').show(500);
+                $('#navbar-content').show(400);
             },
             beforeSend: function() {
                 $('#page').hide();
@@ -60,12 +60,10 @@ var Training = (function() {
                 $('#decision').delay(1000).fadeOut(1000)
             },
             beforeSend: function() {
-                /*$('#page').hide();
-                $('#pageSpinner.spinner').show();*/
+                $('#decisionSpinner.spinner-blue').show();
             },
             complete: function() {
-                /*$('#pageSpinner.spinner').hide();
-                $('#page').show(400);*/
+                $('#decisionSpinner.spinner-blue').hide();
             }
         });
     }

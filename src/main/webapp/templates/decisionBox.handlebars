@@ -1,6 +1,6 @@
 <div id="decisionBox" class="panel panel-default blue-box">
     <div class="panel-body">
-        <h3>Kommer du på trening i dag?</h3>
+        <h3>{{#decisionText this}}{{/decisionText}}</h3>
         <form id="decisionForm">
             {{#if currentUser.attendance}}
                 <input type="hidden" name="attendanceId" value="{{currentUser.attendance.id}}">
@@ -17,7 +17,10 @@
             </div>
         </form>
         {{#if currentUser.attendance.attendanceType.id}}
-            <div style="height:20px;"><h4 id="decision" style="display:none">Svaret ditt er registrert</h4></div>
+            <div style="height:20px;">
+                <div id="decisionSpinner" class="spinner-blue"></div>
+                <h4 id="decision" style="display:none">Svaret ditt er registrert</h4>
+            </div>
         {{/if}}
     </div>
 </div>
