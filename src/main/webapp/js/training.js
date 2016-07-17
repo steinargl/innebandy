@@ -53,6 +53,8 @@ var Training = (function() {
                 var maybeAttendingBoxHtml = Handlebars.templates.maybeAttendingBox(training);
                 $('#maybeAttendingBox').replaceWith(maybeAttendingBoxHtml);
 
+                $('#username').html($('#username').text().replace("{username}", training.currentUser.username));
+
                 _initEventHandlers(training);
 
                 $('#decision').show();
