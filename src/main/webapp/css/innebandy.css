@@ -112,7 +112,6 @@ body {
  ** BOXES **
  ***************/
 
-
 .blue-box {
     background-color: #4CB5F5;
     color: white;
@@ -121,6 +120,25 @@ body {
     border-style: solid;
     border-color: #064d79;
     /*height: 215px;*/
+}
+
+#profileForm label {
+    font-size: 140%;
+    font-weight: normal;
+}
+
+#profileForm input {
+    font-size: 110%;
+    font-weight: normal;
+    height:40px;
+}
+
+input[type=checkbox] {
+  /* All browsers except webkit*/
+  transform: scale(1.5);
+
+  /* Webkit browsers*/
+  -webkit-transform: scale(1.5);
 }
 
 .blue-box hr {
@@ -184,7 +202,6 @@ body {
     background-color: #09432e;
     border-color: #09432e;
 }
-
 
 .info-box {
      /*background-color: #F8F1E5;

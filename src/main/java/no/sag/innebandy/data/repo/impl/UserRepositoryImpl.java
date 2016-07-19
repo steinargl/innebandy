@@ -37,7 +37,7 @@ public class UserRepositoryImpl implements UserRepository
     }
 
     @Override
-    public User findByUsernameAndEnabled(String username, boolean enabled)
+    public User findByUsername(final String username)
     {
         Preconditions.checkNotNull(!StringUtils.isEmpty(username), "username is required");
 
@@ -49,11 +49,14 @@ public class UserRepositoryImpl implements UserRepository
             .append(" ").append("left join attendance as a")
             .append(" ").append("on u.username=a.username")
             .append(" ").append("where u.username=?")
-            .append(" ").append("and u.enabled=?")
             .append(" ").append("order by u.username")
             .toString();
 
-        final List<User> users = jdbcTemplate.query(sql, new Object[] {enabled, username}, new UsersResultSetExtractor());
+        final List<User> users = jdbcTemplate.query(
+            sql,
+            new Object[] { username },
+            new UsersResultSetExtractor()
+        );
 
         if (users.size() != 1) {
             throw new IllegalStateException("Expected to find exactly one user with username=" + username);

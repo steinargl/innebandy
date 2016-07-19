@@ -8,5 +8,5 @@ public interface UserRepository
 {
     List<User> findByEnabled(boolean enabled);
 
-    User findByUsernameAndEnabled(String username, boolean enabled);
+    User findByUsername(String username);
 }

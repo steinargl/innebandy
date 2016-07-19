@@ -9,7 +9,7 @@ $(document).ready(function(){
         if (training.status === 'NO') {
             return "failure";
         }
-        if (isToday(training.isoDate) && training.status === 'MAYBE') {
+        if (isTrainingDay(training.isoDate) && training.status === 'MAYBE') {
             return "warning";
         }
         return "maybe";
@@ -29,7 +29,7 @@ $(document).ready(function(){
         if (training.status === 'NO') {
             return "Ingen trening i dag";
         }
-        if (isToday(training.isoDate) && training.status === 'MAYBE') {
+        if (isTrainingDay(training.isoDate) && training.status === 'MAYBE') {
             return "Ser dårlig ut...";
         }
         return "Foreløpig usikkert...";
@@ -61,20 +61,20 @@ $(document).ready(function(){
     });
 
     Handlebars.registerHelper('jumbotronText', function(training) {
-        if (isToday(training.isoDate)) {
+        if (isTrainingDay(training.isoDate)) {
             return "Status for trening i dag";
         }
-        else if (isYesterday(training.isoDate)) {
+        else if (isDayBeforeTrainingDay(training.isoDate)) {
             return "Status for trening i morgen";
         }
-        return "Status for neste trening - " + training.formattedDate;
+        return "Status for trening " + training.formattedDate;
     });
 
     Handlebars.registerHelper('decisionText', function(training) {
-        if (isToday(training.isoDate)) {
+        if (isTrainingDay(training.isoDate)) {
             return "Kommer du på trening i dag?";
         }
-        else if (isYesterday(training.isoDate)) {
+        else if (isDayBeforeTrainingDay(training.isoDate)) {
             return "Kommer du på trening i morgen?";
         }
         return "Kommer du på trening til tirsdag?";
@@ -84,15 +84,15 @@ $(document).ready(function(){
 
 });
 
-function isToday(date) {
+function isTrainingDay(date) {
     var now = new Date();
     var nowStr = now.getFullYear() + "-" + ('0' + (now.getMonth()+1)).slice(-2) + "-" + ('0' + now.getDate()).slice(-2);
     return nowStr === date;
 }
 
-function isYesterday(date) {
+function isDayBeforeTrainingDay(date) {
     var now = new Date();
-    now.setDate(now.getDate() - 1);
+    now.setDate(now.getDate() + 1);
     var nowStr = now.getFullYear() + "-" + ('0' + (now.getMonth()+1)).slice(-2) + "-" + ('0' + now.getDate()).slice(-2);
     return nowStr === date;
 }
