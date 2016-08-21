@@ -8,5 +8,7 @@ public interface UserRepository
 {
     List<User> findByEnabled(boolean enabled);
 
-    User findByUsername(String username);
+    User findByEmail(String email);
+
+    void update(String email, String name, String phone);
 }

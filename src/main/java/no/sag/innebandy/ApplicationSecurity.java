@@ -2,10 +2,15 @@ package no.sag.innebandy;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.sql.DataSource;
 
@@ -14,30 +19,26 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private RESTAuthenticationEntryPoint authenticationEntryPoint;
+
     @Autowired
     private RESTAuthenticationFailureHandler authenticationFailureHandler;
+
     @Autowired
     private RESTAuthenticationSuccessHandler authenticationSuccessHandler;
+
     @Autowired
-    DataSource dataSource;
+    private DataSource dataSource;
+
 
     @Override
-    protected void configure(AuthenticationManagerBuilder builder) throws Exception
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception
     {
-        builder
+        auth
             .jdbcAuthentication()
             .dataSource(dataSource)
-            .usersByUsernameQuery("select username, password, enabled from users where username=?")
-            .authoritiesByUsernameQuery("select username, role from user_roles where username=?");
-
-
-            /*.inMemoryAuthentication()
-            .withUser("sglamseter@gmail.com")
-            .password("steinar")
-            .roles("USER")
-            .and()
-            .withUser("admin")
-            .password("admin").roles("ADMIN");*/
+            .passwordEncoder(passwordEncoder())
+            .usersByUsernameQuery("select email, password, enabled from users where email=?")
+            .authoritiesByUsernameQuery("select email, role from user_roles where email=?");
     }
 
     @Override
@@ -48,8 +49,15 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
         http.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint);
         http.formLogin().successHandler(authenticationSuccessHandler);
         http.formLogin().failureHandler(authenticationFailureHandler);
-        http.formLogin().usernameParameter("username");
+        http.formLogin().usernameParameter("email");
         http.formLogin().passwordParameter("password");
         http.logout().logoutSuccessUrl("/");
     }
+
+    @Bean
+    public PasswordEncoder passwordEncoder()
+    {
+        return new BCryptPasswordEncoder();
+    }
+
 }

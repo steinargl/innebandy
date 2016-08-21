@@ -58,11 +58,13 @@ public class TrainingServiceImpl implements TrainingService
         final List<UserDto> notAttendingList = createList(users, a -> a.getDate().equals(nextTrainingDate) && a.notAttending());
         final List<UserDto> maybeAttendingList = createList(users, a -> a.getDate().equals(nextTrainingDate) && a.maybeAttending());
 
-        maybeAttendingList.addAll(users.stream()
-            .filter(u -> u.getAttendences().isEmpty())
-            .map(u->UserDto.builder().build(u))
-            .collect(Collectors.toList())
-        );
+        for (User user : users)
+        {
+            if (user.hasNotAnswerd(nextTrainingDate))
+            {
+                maybeAttendingList.add(UserDto.builder().build(user));
+            }
+        }
 
         final TrainingStatus trainingStatus = trainingStatusService.getStatus(attendingList.size(), limit);
 
@@ -84,7 +86,7 @@ public class TrainingServiceImpl implements TrainingService
     {
         final List<UserDto> userDtos = new ArrayList<>();
         for (User user : users) {
-            final Optional<Attendance> attendance = user.getAttendences().stream().filter(predicate).findFirst();
+            final Optional<Attendance> attendance = user.getAttendance(predicate);
             if (attendance.isPresent()) {
                 userDtos.add(UserDto.builder().build(user, attendance.get()));
             }
@@ -92,17 +94,15 @@ public class TrainingServiceImpl implements TrainingService
         return userDtos;
     }
 
-    private UserDto getCurrentUser(final String username, final LocalDate nextTrainingDate, final List<User> users)
+    private UserDto getCurrentUser(final String email, final LocalDate nextTrainingDate, final List<User> users)
     {
-        final Optional<User> currentUser = users.stream().filter(u -> u.getUsername().equals(username)).findFirst();
+        final Optional<User> currentUser = users.stream().filter(u -> u.getEmail().equals(email)).findFirst();
         if (!currentUser.isPresent()) {
             throw new IllegalStateException(String.format("Cannot find user with username=%s"));
         }
 
         final Optional<Attendance> attendance =
-            currentUser.get().getAttendences().stream()
-                .filter(a -> a.getDate().equals(nextTrainingDate))
-                .findFirst();
+                currentUser.get().getAttendance(a -> a.getDate().equals(nextTrainingDate));
 
         if (attendance.isPresent()) {
             return UserDto.builder().build(currentUser.get(), attendance.get());

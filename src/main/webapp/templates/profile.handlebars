@@ -1,33 +1,58 @@
 <div class="row">
-    <div class="col-sm-6">
-        <form id="profileForm" class="panel panel-default blue-box">
-            <h3>Endre brukerinfo</h3>
-            <fieldset class="form-group">
-                <label for="username">Brukernavn / epost</label>
-                <input readonly type="email" class="form-control" id="username">
-            </fieldset>
-            <fieldset class="form-group">
-                <label for="name">Navn</label>
-                <input type="text" class="form-control" id="name">
-                <!--small class="text-muted">We'll never share your email with anyone else.</small-->
-            </fieldset>
-            <fieldset class="form-group">
-                <label for="phone">Mobil</label>
-                <input type="text" class="form-control" id="phone">
-            </fieldset>
-            <button type="submit" class="btn btn-primary">Lagre</button>
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+        <form id="profileForm" class="panel panel-default gray-box">
+            <div class="panel-body">
+                <h3>Profil</h3>
+                <fieldset class="form-group">
+                    <label for="email">Brukernavn / epost</label>
+                    <input readonly type="email" class="form-control" id="email" name="email" value="{{email}}">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="name">Navn</label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{name}}">
+                    {{#if validationResult.nameErrorMsg}}
+                        <div class="errorMsg">
+                            <div class="alert alert-danger errorMsg" role="alert">
+                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                {{validationResult.nameErrorMsg}}
+                            </div>
+                        </div>
+                    {{/if}}
+                    <!--small class="text-muted">We'll never share your email with anyone else.</small-->
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="phone">Mobil</label>
+                    <input type="text" class="form-control" id="phone" name="phone" value="{{phone}}">
+                    {{#if validationResult.phoneErrorMsg}}
+                        <div class="errorMsg">
+                            <div class="alert alert-danger" role="alert">
+                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> {{validationResult.phoneErrorMsg}}
+                            </div>
+                        </div>
+                    {{/if}}
+                </fieldset>
+                <button type="submit" id="btnSaveProfile" class="btn btn-primary">Lagre</button>
+                <div style="height:30px;margin-top:10px;">
+                    <div id="profileSpinner" class="spinner-blue"></div>
+                    <h4 id="profileResponseMsg" style="display:none">Profilen din er oppdatert.</h4>
+                </div>
+            </div>
         </form>
     </div>
-    <div class="col-sm-6">
-        <form id="pwdForm" class="panel panel-default blue-box">
+    <div class="col-sm-2"></div>
+    <!--
+    <div class="col-sm-5">
+        <form id="pwdForm" class="panel panel-default gray-box">
             <h3>Endre passord</h3>
             <fieldset class="form-group">
                 <label for="pwd">Passord</label>
                 <input type="password" class="form-control" id="pwd">
             </fieldset>
-            <button type="submit" class="btn btn-primary">Lagre</button>
+            <button id="btnSaveProfile" type="submit" class="btn btn-primary">Lagre</button>
         </form>
     </div>
+    -->
 </div>
 
 

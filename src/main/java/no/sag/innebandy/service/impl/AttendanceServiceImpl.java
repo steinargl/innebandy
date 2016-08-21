@@ -25,13 +25,13 @@ public class AttendanceServiceImpl implements AttendanceService
 
     @Override
     @Transactional
-    public void createAttendance(final String username, final AttendanceType attendanceType)
+    public void createAttendance(final String email, final AttendanceType attendanceType)
     {
-        checkArgument(!isEmpty(username), "username is required");
+        checkArgument(!isEmpty(email), "email is required");
         checkArgument(!isEmpty(attendanceType), "attendanceType is required");
 
         final LocalDate nextTrainingDate = calendarService.nextTrainingDate();
-        attendanceRepository.save(username, nextTrainingDate, attendanceType);
+        attendanceRepository.save(email, nextTrainingDate, attendanceType);
     }
 
     @Override

@@ -4,5 +4,5 @@ import no.sag.innebandy.view.dto.TrainingDto;
 
 public interface TrainingService
 {
-    TrainingDto getTraining(final String username);
+    TrainingDto getTraining(final String email);
 }

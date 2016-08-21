@@ -24,6 +24,13 @@ body {
     height: 32px; /*height of your image*/
 }
 
+.spinner-gray {
+    display: none;
+    background-image: url("/images/spinner-gray.gif");
+    width: 36px; /*width of your image*/
+    height: 36px; /*height of your image*/
+}
+
 @media (max-width: 768px) {
     .container {
       padding:0;
@@ -226,6 +233,11 @@ input[type=checkbox] {
     padding:30px;
     border-width: 1px;
     border-style: solid;
+}
+
+.errorMsg {
+    margin-top: 5px;
+    margin-bottom: 0px;
 }
 
 hr {

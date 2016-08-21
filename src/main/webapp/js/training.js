@@ -8,7 +8,7 @@ var Training = (function() {
                 $('#page').html(trainingHtml);
                 _initEventHandlers(training);
 
-                $('#username').html($('#username').text().replace("{username}", training.currentUser.username));
+                $('#email').html($('#email').text().replace("{name}", training.currentUser.name));
                 $('#navbar-content').show(400);
             },
             beforeSend: function() {
@@ -53,7 +53,7 @@ var Training = (function() {
                 var maybeAttendingBoxHtml = Handlebars.templates.maybeAttendingBox(training);
                 $('#maybeAttendingBox').replaceWith(maybeAttendingBoxHtml);
 
-                $('#username').html($('#username').text().replace("{username}", training.currentUser.username));
+                $('#email').html($('#email').text().replace("{name}", training.currentUser.name));
 
                 _initEventHandlers(training);
 

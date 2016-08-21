@@ -4,7 +4,7 @@ templates['attendingBox'] = template({"1":function(container,depth0,helpers,part
     var helper;
 
   return "            "
-    + container.escapeExpression(((helper = (helper = helpers.username || (depth0 != null ? depth0.username : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"username","hash":{},"data":data}) : helper)))
+    + container.escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"name","hash":{},"data":data}) : helper)))
     + "<br>\r\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1;
@@ -22,7 +22,7 @@ templates['bigStatusBox'] = template({"1":function(container,depth0,helpers,part
 
   return "<div id=\"bigStatusBox\" class=\"jumbotron jumbotron-"
     + ((stack1 = (helpers.severity || (depth0 && depth0.severity) || alias2).call(alias1,depth0,{"name":"severity","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "\">\r\n    <h3><div id=\"username\">Hei&nbsp;{username}!</div></h3>\r\n    <h4>"
+    + "\">\r\n    <h3><div id=\"email\">Hei&nbsp;{name}!</div></h3>\r\n    <h4>"
     + ((stack1 = (helpers.jumbotronText || (depth0 && depth0.jumbotronText) || alias2).call(alias1,depth0,{"name":"jumbotronText","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "</h4>\r\n    <h1 class=\"jumbotron-header-"
     + ((stack1 = (helpers.severity || (depth0 && depth0.severity) || alias2).call(alias1,depth0,{"name":"severity","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
@@ -66,7 +66,7 @@ templates['decisionBox'] = template({"1":function(container,depth0,helpers,parti
     + "    </div>\r\n</div>\r\n";
 },"useData":true});
 templates['infoBox1'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<div class=\"panel panel-default info-box\">\r\n    <div class=\"panel-body\">\r\n        <p>\r\n            Trening på tirsdager fra kl 20.00 til kl 22.00 i <a href=\"https://www.google.no/maps/place/Gaustadhallen/@59.2659743,10.7717805,15z/data=!4m5!3m4!1s0x0:0xe28d42b4c8661585!8m2!3d59.2659743!4d10.7717805\">Gaustadhallen</a>\r\n        </p>\r\n        <p>\r\n            Første trening blir tirsdag 16. august og siste trening blir 27. desember.\r\n        </p>\r\n    </div>\r\n</div>\r\n";
+    return "<div class=\"panel panel-default info-box\">\r\n    <div class=\"panel-body\">\r\n        <p>\r\n            Trening på tirsdager fra kl 20.00 til kl 22.00 i <a href=\"https://www.google.no/maps/place/Gaustadhallen/@59.2659743,10.7717805,15z/data=!4m5!3m4!1s0x0:0xe28d42b4c8661585!8m2!3d59.2659743!4d10.7717805\">Gaustadhallen</a>\r\n        </p>\r\n        <p>\r\n            Første trening blir tirsdag 16. august og siste trening blir 27. desember.\r\n        </p>\r\n        <p>\r\n           Vi må være minst 4 spillere for at det skal bli trening.\r\n        </p>\r\n    </div>\r\n</div>\r\n";
 },"useData":true});
 templates['infoBox2'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "<div class=\"panel panel-default info-box\">\r\n    <div class=\"panel-body\">\r\n        <h3>Pris</h3>\r\n        <table class=\"table\">\r\n            <tbody>\r\n                <tr>\r\n                    <td>Hele perioden</td>\r\n                    <td>kr 720,-</td>\r\n                </tr>\r\n                <tr>\r\n                    <td>Pr. måned</td>\r\n                    <td>kr 144,-</td>\r\n                </tr>\r\n            </tbody>\r\n        </table>\r\n        <P>\r\n            Betal med <a href=\"https://www.vipps.no/sos.html\">Vipps</a> til 91193609\r\n        </p>\r\n        <p>\r\n            P.S. Fint om flest mulig betaler for hele perioden.\r\n        </p>\r\n    </div>\r\n</div>\r\n";
@@ -78,7 +78,7 @@ templates['login'] = template({"1":function(container,depth0,helpers,partials,da
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1;
 
-  return "<div id=\"login\" class=\"panel panel-default login-box\">\r\n    <form id=\"loginform\">\r\n        <fieldset class=\"form-group\">\r\n            <label for=\"uid\">Brukernavn</label>\r\n            <input type=\"userid\" class=\"form-control\" id=\"uid\" placeholder=\"Brukernavn\">\r\n        </fieldset>\r\n        <fieldset class=\"form-group\">\r\n            <label for=\"pwd\">Passord</label>\r\n            <input type=\"password\" class=\"form-control\" id=\"pwd\" placeholder=\"Passord\">\r\n        </fieldset>\r\n"
+  return "<div id=\"login\" class=\"panel panel-default login-box\">\r\n    <form id=\"loginform\">\r\n        <fieldset class=\"form-group\">\r\n            <label for=\"email\">Epost</label>\r\n            <input type=\"text\" class=\"form-control\" id=\"email\" placeholder=\"Brukernavn\">\r\n        </fieldset>\r\n        <fieldset class=\"form-group\">\r\n            <label for=\"pwd\">Passord</label>\r\n            <input type=\"password\" class=\"form-control\" id=\"pwd\" placeholder=\"Passord\">\r\n        </fieldset>\r\n"
     + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},depth0,{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "        <button type=\"submit\" id=\"btnLogin\" class=\"btn btn-primary\">Logg inn</button>\r\n    </form>\r\n</div>\r\n";
 },"useData":true});
@@ -86,14 +86,14 @@ templates['maybeAttendingBox'] = template({"1":function(container,depth0,helpers
     var helper;
 
   return "            "
-    + container.escapeExpression(((helper = (helper = helpers.username || (depth0 != null ? depth0.username : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"username","hash":{},"data":data}) : helper)))
+    + container.escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"name","hash":{},"data":data}) : helper)))
     + "<br>\r\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1;
 
   return "<div id=\"maybeAttendingBox\" class=\"panel panel-default yellow-box\">\r\n    <div class=\"panel-body\">\r\n        <span class=\"player-count\">"
     + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? depth0.maybeAttendingList : depth0)) != null ? stack1.length : stack1), depth0))
-    + "</span>&nbsp;VET IKKE\r\n        <hr>\r\n"
+    + "</span>&nbsp;VET IKKE / IKKE SVART\r\n        <hr>\r\n"
     + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.maybeAttendingList : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "    </div>\r\n</div>\r\n";
 },"useData":true});
@@ -101,7 +101,7 @@ templates['notAttendingBox'] = template({"1":function(container,depth0,helpers,p
     var helper;
 
   return "            "
-    + container.escapeExpression(((helper = (helper = helpers.username || (depth0 != null ? depth0.username : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"username","hash":{},"data":data}) : helper)))
+    + container.escapeExpression(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"name","hash":{},"data":data}) : helper)))
     + "<br>\r\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1;
@@ -112,8 +112,32 @@ templates['notAttendingBox'] = template({"1":function(container,depth0,helpers,p
     + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.notAttendingList : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "    </div>\r\n</div>\r\n";
 },"useData":true});
-templates['profile'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<div class=\"row\">\r\n    <div class=\"col-sm-6\">\r\n        <form id=\"profileForm\" class=\"panel panel-default blue-box\">\r\n            <h3>Endre brukerinfo</h3>\r\n            <fieldset class=\"form-group\">\r\n                <label for=\"username\">Brukernavn / epost</label>\r\n                <input readonly type=\"email\" class=\"form-control\" id=\"username\">\r\n            </fieldset>\r\n            <fieldset class=\"form-group\">\r\n                <label for=\"name\">Navn</label>\r\n                <input type=\"text\" class=\"form-control\" id=\"name\">\r\n                <!--small class=\"text-muted\">We'll never share your email with anyone else.</small-->\r\n            </fieldset>\r\n            <fieldset class=\"form-group\">\r\n                <label for=\"phone\">Mobil</label>\r\n                <input type=\"text\" class=\"form-control\" id=\"phone\">\r\n            </fieldset>\r\n            <button type=\"submit\" class=\"btn btn-primary\">Lagre</button>\r\n        </form>\r\n    </div>\r\n    <div class=\"col-sm-6\">\r\n        <form id=\"pwdForm\" class=\"panel panel-default blue-box\">\r\n            <h3>Endre passord</h3>\r\n            <fieldset class=\"form-group\">\r\n                <label for=\"pwd\">Passord</label>\r\n                <input type=\"password\" class=\"form-control\" id=\"pwd\">\r\n            </fieldset>\r\n            <button type=\"submit\" class=\"btn btn-primary\">Lagre</button>\r\n        </form>\r\n    </div>\r\n</div>\r\n\r\n\r\n\r\n";
+templates['profile'] = template({"1":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "                        <div class=\"errorMsg\">\r\n                            <div class=\"alert alert-danger errorMsg\" role=\"alert\">\r\n                                <span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true\"></span>\r\n                                "
+    + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? depth0.validationResult : depth0)) != null ? stack1.nameErrorMsg : stack1), depth0))
+    + "\r\n                            </div>\r\n                        </div>\r\n";
+},"3":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "                        <div class=\"errorMsg\">\r\n                            <div class=\"alert alert-danger\" role=\"alert\">\r\n                                <span class=\"glyphicon glyphicon-exclamation-sign\" aria-hidden=\"true\"></span> "
+    + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? depth0.validationResult : depth0)) != null ? stack1.phoneErrorMsg : stack1), depth0))
+    + "\r\n                            </div>\r\n                        </div>\r\n";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+
+  return "<div class=\"row\">\r\n    <div class=\"col-sm-2\"></div>\r\n    <div class=\"col-sm-8\">\r\n        <form id=\"profileForm\" class=\"panel panel-default gray-box\">\r\n            <div class=\"panel-body\">\r\n                <h3>Profil</h3>\r\n                <fieldset class=\"form-group\">\r\n                    <label for=\"email\">Brukernavn / epost</label>\r\n                    <input readonly type=\"email\" class=\"form-control\" id=\"email\" name=\"email\" value=\""
+    + alias4(((helper = (helper = helpers.email || (depth0 != null ? depth0.email : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"email","hash":{},"data":data}) : helper)))
+    + "\">\r\n                </fieldset>\r\n                <fieldset class=\"form-group\">\r\n                    <label for=\"name\">Navn</label>\r\n                    <input type=\"text\" class=\"form-control\" id=\"name\" name=\"name\" value=\""
+    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
+    + "\">\r\n"
+    + ((stack1 = helpers["if"].call(alias1,((stack1 = (depth0 != null ? depth0.validationResult : depth0)) != null ? stack1.nameErrorMsg : stack1),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "                    <!--small class=\"text-muted\">We'll never share your email with anyone else.</small-->\r\n                </fieldset>\r\n                <fieldset class=\"form-group\">\r\n                    <label for=\"phone\">Mobil</label>\r\n                    <input type=\"text\" class=\"form-control\" id=\"phone\" name=\"phone\" value=\""
+    + alias4(((helper = (helper = helpers.phone || (depth0 != null ? depth0.phone : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"phone","hash":{},"data":data}) : helper)))
+    + "\">\r\n"
+    + ((stack1 = helpers["if"].call(alias1,((stack1 = (depth0 != null ? depth0.validationResult : depth0)) != null ? stack1.phoneErrorMsg : stack1),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "                </fieldset>\r\n                <button type=\"submit\" id=\"btnSaveProfile\" class=\"btn btn-primary\">Lagre</button>\r\n                <div style=\"height:30px;margin-top:10px;\">\r\n                    <div id=\"profileSpinner\" class=\"spinner-blue\"></div>\r\n                    <h4 id=\"profileResponseMsg\" style=\"display:none\">Profilen din er oppdatert.</h4>\r\n                </div>\r\n            </div>\r\n        </form>\r\n    </div>\r\n    <div class=\"col-sm-2\"></div>\r\n    <!--\r\n    <div class=\"col-sm-5\">\r\n        <form id=\"pwdForm\" class=\"panel panel-default gray-box\">\r\n            <h3>Endre passord</h3>\r\n            <fieldset class=\"form-group\">\r\n                <label for=\"pwd\">Passord</label>\r\n                <input type=\"password\" class=\"form-control\" id=\"pwd\">\r\n            </fieldset>\r\n            <button id=\"btnSaveProfile\" type=\"submit\" class=\"btn btn-primary\">Lagre</button>\r\n        </form>\r\n    </div>\r\n    -->\r\n</div>\r\n\r\n\r\n\r\n";
 },"useData":true});
 templates['training'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1;
@@ -130,8 +154,8 @@ templates['training'] = template({"compiler":[7,">= 4.0.0"],"main":function(cont
     + ((stack1 = container.invokePartial(partials.maybeAttendingBox,depth0,{"name":"maybeAttendingBox","data":data,"indent":"        ","helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
     + "    </div>\r\n    <div class=\"col-sm-4\">\r\n"
     + ((stack1 = container.invokePartial(partials.notAttendingBox,depth0,{"name":"notAttendingBox","data":data,"indent":"        ","helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
-    + "    </div>\r\n</div>\r\n<div class=\"row\">\r\n    <div class=\"col-sm-5\">\r\n"
+    + "    </div>\r\n</div>\r\n<!--<div class=\"row\">\r\n    <div class=\"col-sm-5\">\r\n"
     + ((stack1 = container.invokePartial(partials.infoBox2,depth0,{"name":"infoBox2","data":data,"indent":"        ","helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
-    + "    </div>\r\n</div>\r\n\r\n";
+    + "    </div>\r\n</div>-->\r\n\r\n";
 },"usePartial":true,"useData":true});
 })();

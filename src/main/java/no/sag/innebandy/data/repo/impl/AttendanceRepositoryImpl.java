@@ -1,5 +1,6 @@
 package no.sag.innebandy.data.repo.impl;
 
+import com.google.common.base.Preconditions;
 import no.sag.innebandy.data.model.AttendanceType;
 import no.sag.innebandy.data.repo.AttendanceRepository;
 import no.sag.innebandy.util.TimeUtil;
@@ -16,10 +17,13 @@ public class AttendanceRepositoryImpl implements AttendanceRepository
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public void save(final String username, final LocalDate date, final AttendanceType attendanceType)
+    public void save(final String email, final LocalDate date, final AttendanceType attendanceType)
     {
-        final String sql = "INSERT INTO attendance (username, date, type) values (?,?,?)";
-        final Object[] params = new Object[] { username, TimeUtil.convert(date), attendanceType.name() };
+        Preconditions.checkNotNull(email, "email is required");
+        Preconditions.checkNotNull(attendanceType, "attendanceType is required");
+
+        final String sql = "INSERT INTO attendance (email, date, type) values (?,?,?)";
+        final Object[] params = new Object[] { email, TimeUtil.convert(date), attendanceType.name() };
 
         jdbcTemplate.update(sql, params);
     }
@@ -27,6 +31,9 @@ public class AttendanceRepositoryImpl implements AttendanceRepository
     @Override
     public void update(final Long id, final AttendanceType attendanceType)
     {
+        Preconditions.checkNotNull(id, "id is required");
+        Preconditions.checkNotNull(attendanceType, "attendanceType is required");
+
         final String sql = "UPDATE attendance SET type=? WHERE id=?";
         final Object[] params = new Object[] { attendanceType.name(), id };
 

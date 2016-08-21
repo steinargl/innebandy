@@ -110,4 +110,17 @@ $(document).ajaxError(function(event,xhr,options,exc) {
     }
 });
 
+$(document).on("click", "#btnProfile", function(e) {
+    event.preventDefault();
+    $('.active').removeClass('active');
+    $(this).parent().addClass('active');
+    Profile.displayProfile();
+});
+
+$(document).on("click", "#btnHome", function(e) {
+    event.preventDefault();
+    $('.active').removeClass('active');
+    $(this).parent().addClass('active');
+    Training.displayTraining();
+});
 

@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 public interface AttendanceRepository
 {
-    void save(String username, LocalDate date, AttendanceType attendanceType);
+    void save(String email, LocalDate date, AttendanceType attendanceType);
 
     void update(Long id, AttendanceType attendanceType);
 }

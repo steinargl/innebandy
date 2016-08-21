@@ -24,8 +24,34 @@ var Profile = (function() {
     }
 }());
 
-$(document).on("click", "#btnProfile", function(e) {
+$(document).on("click", "#btnSaveProfile", function(e) {
     event.preventDefault();
-    Profile.displayProfile();
+    var data = 'email=' + $('#email').val() +
+        '&name=' + $('#name').val() + '&phone=' + $('#phone').val();
+
+    $.ajax({
+        data: data,
+        type: 'POST',
+        url: '/innebandy/profile/save',
+        success: function(profile, textStatus, jqXHR) {
+            var profileHtml = Handlebars.templates.profile(profile);
+            $('#page').html(profileHtml);
+
+            if (!profile.validationResult.errors) {
+                $('#profileResponseMsg').show();
+                $('#profileResponseMsg').delay(1300).fadeOut(1000)
+            }
+        },
+        beforeSend: function() {
+            $('#btnSaveProfile').prop('disabled', true);
+            $('#profileSpinner').show();
+        },
+        complete: function() {
+            $('#profileSpinner').hide();
+            $('#btnSaveProfile').prop('disabled', false);
+        },
+        fail: function(jqXHR, textStatus, errorThrown) {
+        }
+    });
 });
 

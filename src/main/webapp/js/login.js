@@ -17,7 +17,7 @@ var Login = (function() {
 
 $(document).on("click", "#btnLogin", function(e) {
     event.preventDefault();
-    var data = 'username=' + $('#uid').val() + '&password=' + $('#pwd').val();
+    var data = 'email=' + $('#email').val() + '&password=' + $('#pwd').val();
     $.ajax({
         data: data,
         type: 'POST',

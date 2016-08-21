@@ -23,11 +23,11 @@ public class UsersResultSetExtractor implements ResultSetExtractor<List<User>>
         {
             final Optional<Attendance> attendance = mapAttendance(rs);
 
-            final String username = rs.getString("u_username");
+            final String email = rs.getString("u_email");
 
-            if (users.containsKey(username))
+            if (users.containsKey(email))
             {
-                final User user = users.get(username);
+                final User user = users.get(email);
                 if (attendance.isPresent()) {
                     user.getAttendences().add(attendance.get());
                 }
@@ -35,12 +35,12 @@ public class UsersResultSetExtractor implements ResultSetExtractor<List<User>>
             else
             {
                 User user = createUser(rs, attendance);
-                users.put(username, user);
+                users.put(email, user);
             }
         }
 
         return users.values().stream()
-            .sorted((o1, o2) -> o1.getUsername().compareTo(o2.getUsername()))
+            .sorted((o1, o2) -> o1.getName().compareTo(o2.getName()))
             .collect(Collectors.toList());
     }
 
@@ -59,8 +59,9 @@ public class UsersResultSetExtractor implements ResultSetExtractor<List<User>>
     private User createUser(final ResultSet rs, final Optional<Attendance> attendance) throws SQLException
     {
         User user = new User();
-        user.setUsername(rs.getString("u_username"));
         user.setEmail(rs.getString("u_email"));
+        user.setName(rs.getString("u_name"));
+        user.setPhone(rs.getString("u_phone"));
         user.setEnabled(rs.getBoolean("u_enabled"));
         if (attendance.isPresent()) {
             user.getAttendences().add(attendance.get());
