@@ -16,7 +16,7 @@ var Login = (function() {
 }());
 
 $(document).on("click", "#btnLogin", function(e) {
-    event.preventDefault();
+    e.preventDefault();
     var data = 'email=' + $('#email').val() + '&password=' + $('#pwd').val();
     $.ajax({
         data: data,
@@ -34,7 +34,7 @@ $(document).on("click", "#btnLogin", function(e) {
 });
 
 $(document).on("click", "#btnLogout", function(e) {
-    event.preventDefault();
+    e.preventDefault();
     $.ajax({
       data: {},
       type: 'POST',
