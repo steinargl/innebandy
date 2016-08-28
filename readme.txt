@@ -42,4 +42,6 @@ local (with production config): spring-boot:run -Dspring.profiles.active=product
 ************************
 * DEPLOY APP ON HEROKU *
 ************************
-https://devcenter.heroku.com/articles/deploying-spring-boot-apps-to-heroku#preparing-a-spring-boot-app-for-heroku
+git push heroku master
+For info:
+    https://devcenter.heroku.com/articles/deploying-spring-boot-apps-to-heroku#preparing-a-spring-boot-app-for-heroku
