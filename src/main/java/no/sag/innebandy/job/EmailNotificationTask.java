@@ -15,8 +15,8 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.time.LocalDate;
 
-@EnableScheduling
-@Component
+/*@EnableScheduling
+@Component*/
 public class EmailNotificationTask
 {
     private static final Logger LOG = LoggerFactory.getLogger(EmailNotificationTask.class);
