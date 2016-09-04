@@ -1,10 +1,12 @@
 package no.sag.innebandy.job;
 
+import no.sag.innebandy.data.model.User;
+import no.sag.innebandy.data.repo.UserRepository;
 import no.sag.innebandy.service.CalendarService;
-import no.sag.innebandy.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -14,9 +16,10 @@ import org.springframework.stereotype.Component;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.time.LocalDate;
+import java.util.List;
 
-/*@EnableScheduling
-@Component*/
+@Component
+@EnableScheduling
 public class EmailNotificationTask
 {
     private static final Logger LOG = LoggerFactory.getLogger(EmailNotificationTask.class);
@@ -25,42 +28,76 @@ public class EmailNotificationTask
     private CalendarService calendarService;
 
     @Autowired
-    private UserService userService;
+    private UserRepository userRepository;
 
     @Autowired
     private JavaMailSender mailSender;
 
-    @Scheduled(initialDelay = 10000, fixedRate = 300000)
+    @Value("${innebandy.notification.email.enabled}")
+    private boolean mailNotificationEnabled;
+
+    //0 0 12 ? * SUN-TUE
+    @Scheduled(cron = "0 0 12 ? * SUN-TUE")
     public void remaindUsersToRegisterForNextTraining()
     {
-        final LocalDate now = LocalDate.now();
-        final LocalDate nextTraingDay = calendarService.nextTrainingDate();
-        final LocalDate twoDaysBeforeTraining = nextTraingDay.minusDays(2);
-
         try
         {
-            sendEmail();
+            LOG.info("Email notification enabled=" + mailNotificationEnabled);
+            if (mailNotificationEnabled)
+            {
+                final LocalDate nextTraingDay = calendarService.nextTrainingDate();
+                final List<User> users = userRepository.findByEnabled(true);
+                for (User user : users)
+                {
+                    if (user.hasNotAnswerd(nextTraingDay))
+                    {
+                        sendEmail(user, nextTraingDay);
+                        LOG.info("Sent mail to " + user.getEmail());
+                    }
+                }
+            }
         }
         catch (Exception e)
         {
             LOG.error("Failed to send email", e);
         }
-
     }
 
-    private void sendEmail() throws MessagingException
+    private void sendEmail(final User user, final LocalDate nextTrainingDate) throws MessagingException
     {
         MimeMessage mail = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mail, true);
-        helper.setTo("sglamseter@gmail.com");
+        helper.setTo(user.getEmail());
 
         //helper.setReplyTo("someone@localhost");
         helper.setFrom("manstadinnebandy@gmail.com");
-        helper.setSubject("Lorem ipsum");
-        helper.setText("Lorem ipsum dolor sit amet [...]");
+        helper.setSubject("Påminnelse om innebandytrening");
+        helper.setText(createText(user, nextTrainingDate));
 
         mailSender.send(mail);
-        //return helper;
     }
 
+    private String createText(final User user, final LocalDate nextTrainingDate)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Hei ").append(user.getName()).append("!\n");
+        sb.append("Kommer du på trening");
+
+        if (nextTrainingDate.equals(LocalDate.now())) {
+            sb.append(" i dag");
+        }
+        else if (nextTrainingDate.minusDays(1).equals(LocalDate.now())) {
+            sb.append(" i morgen");
+        }
+        else if (nextTrainingDate.minusDays(2).equals(LocalDate.now())) {
+            sb.append(" til tirsdag");
+        }
+
+        sb.append("?\n\n");
+        sb.append("Registrer svaret ditt på nettsiden.\n");
+        sb.append("https://manstad-innebandy.herokuapp.com\n\n");
+        sb.append("Mvh Manstad innebandy");
+
+        return sb.toString();
+    }
 }
