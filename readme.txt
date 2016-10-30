@@ -45,3 +45,6 @@ local (with production config): spring-boot:run -Dspring.profiles.active=product
 git push heroku master
 For info:
     https://devcenter.heroku.com/articles/deploying-spring-boot-apps-to-heroku#preparing-a-spring-boot-app-for-heroku
+
+Check dyno usage:
+    heroku ps -a manstad-innebandy

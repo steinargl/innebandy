@@ -36,7 +36,6 @@ public class EmailNotificationTask
     @Value("${innebandy.notification.email.enabled}")
     private boolean mailNotificationEnabled;
 
-    //0 0 12 ? * SUN-TUE
     @Scheduled(cron = "0 0 12 ? * SUN-TUE")
     public void remaindUsersToRegisterForNextTraining()
     {

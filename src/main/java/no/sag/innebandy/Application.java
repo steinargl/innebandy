@@ -21,12 +21,12 @@ public class Application
         javaMailSender.setHost("smtp.gmail.com");
         javaMailSender.setPort(587);
         javaMailSender.setUsername("manstadinnebandy@gmail.com");
-        javaMailSender.setPassword("innebandy1626");
+        javaMailSender.setPassword("manstadinnebandy1626");
 
         Properties properties = new Properties();
         properties.setProperty("mail.smtp.from", "manstadinnebandy@gmail.com");
         properties.setProperty("mail.smtp.user", "manstadinnebandy@gmail.com");
-        properties.setProperty("mail.smtp.password", "innebandy1626");
+        properties.setProperty("mail.smtp.password", "manstadinnebandy1626");
         properties.setProperty("mail.smtp.host", "smtp.gmail.com");
         properties.setProperty("mail.smtp.port", "587");
         properties.setProperty("mail.smtp.auth", "true");
