@@ -25,7 +25,7 @@ public class ProfileController
 
     @ResponseStatus(value = HttpStatus.OK)
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public UserDto savetUser(
+    public UserDto saveUser(
             final Principal principal,
             @RequestParam("email") final String email,
             @RequestParam("name") final String name,

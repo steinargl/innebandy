@@ -48,3 +48,10 @@ For info:
 
 Check dyno usage:
     heroku ps -a manstad-innebandy
+
+
+*********
+* SLACK *
+*********
+
+Team domain: manstadinnebandy.slack.com

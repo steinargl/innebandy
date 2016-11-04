@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="SLACK" class="no.sag.innebandy.SlackAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %d{yyyy-MM-dd HH:mm:ss} %-5level %class{0}.%M - %msg%n
+            </Pattern>
+        </layout>
+        <endpoint>https://hooks.slack.com/services/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</endpoint>
+    </appender>
+
+    <logger name="no.sag.innebandy" level="INFO" additivity="false">
+        <appender-ref ref="SLACK" />
+    </logger>
+
+    <root>
+        <level value="ERROR" />
+        <appender-ref ref="SLACK" />
+    </root>
+
+
+</configuration>
