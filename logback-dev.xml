@@ -10,12 +10,12 @@
     </appender>
 
     <logger name="no.sag.innebandy" level="DEBUG" additivity="false">
-        <appender-ref ref="SLACK" />
+        <appender-ref ref="STDOUT" />
     </logger>
 
     <root>
         <level value="DEBUG" />
-        <appender-ref ref="SLACK" />
+        <appender-ref ref="STDOUT" />
     </root>
 
 </configuration>
