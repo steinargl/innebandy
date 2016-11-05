@@ -42,7 +42,7 @@ public class TrainingController
 
         final TrainingDto trainingDto = trainingService.getTraining(principal.getName());
 
-        LOG.info(String.format("%s made request to /create with attendanceTypeId %s", principal.getName(), attendanceTypeId));
+        LOG.info(String.format("User=%s attendanceTypeId=%s participant=%s", principal.getName(), attendanceTypeId, trainingDto.getAttendingList().size()));
 
         return trainingDto;
     }
@@ -58,7 +58,7 @@ public class TrainingController
 
         final TrainingDto trainingDto = trainingService.getTraining(principal.getName());
 
-        LOG.info(String.format("%s made request to /update with attendanceTypeId %s", principal.getName(), attendanceTypeId));
+        LOG.info(String.format("User=%s attendanceTypeId=%s participant=%s", principal.getName(), attendanceTypeId, trainingDto.getAttendingList().size()));
 
         return trainingDto;
     }
